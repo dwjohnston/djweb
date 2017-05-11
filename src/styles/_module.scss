@@ -1,0 +1,21 @@
+.module {
+
+  flex: 1 0 auto;
+
+  border: solid 1px $color-white;
+
+  padding: 0;
+  margin: 1em;
+  .header {
+    padding: 0.25em;
+    border: solid 1px $color-white;
+    border-width: 0 0 1px 0;
+    text-align: center;
+  }
+
+  .body {
+    padding: 0.25em;
+    border:none;
+  }
+
+}
