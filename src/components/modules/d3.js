@@ -185,6 +185,9 @@ componentWillUnmount() {
 
 handleTextChange(v,i) {
 console.log("handle text change");
+
+
+
   console.log(v);
   console.log(i);
 
@@ -193,7 +196,18 @@ console.log("handle text change");
 console.log(this);
   let newState = this.state;
 
-  newState.data[i].value = v.target.value;
+  let value = parseFloat(v.target.value);
+  if (isNaN(value) || value <0){
+
+    newState.data[i].value = 0;
+    newState.data[i].isValid = false;
+
+  }else {
+    newState.data[i].value = value;
+    newState.data[i].isValid = true;
+  }
+  console.log(value);
+
   this.setState(newState)
 
   d3Chart.update(this.svgEl, this.getChartState());
@@ -214,7 +228,8 @@ console.log(this);
           onChange = {(v) => {
             this.handleTextChange(v,i);
           }}/>
-          <span class ="error"/>
+        <span className =  {"error " +  (v.isValid ? "valid" : "invalid")}></span>
+
           </div>
 
     });

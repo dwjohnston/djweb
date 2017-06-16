@@ -1,5 +1,5 @@
 import React from 'react';
-import '!style!css!bootstrap/dist/css/bootstrap.min.css';
+//import '!style!css!bootstrap/dist/css/bootstrap.min.css';
 
 
 class BootstrapModule extends React.Component {

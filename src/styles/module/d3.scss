@@ -32,13 +32,18 @@ svg {
 
         input {
           margin: 0.25em;
+          flex: 1 0 auto;
         }
 
-        span {
+        span.error {
           width: 2em;
           height: 2em;
           margin: 0.1em;
           border: solid 1px white;
+
+          &.invalid {
+            background-color: red; 
+          }
         }
       }
 
