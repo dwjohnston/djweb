@@ -1,4 +1,6 @@
 import React from 'react';
+import '!style!css!bootstrap/dist/css/bootstrap.min.css';
+
 
 class BootstrapModule extends React.Component {
 
@@ -7,7 +9,9 @@ class BootstrapModule extends React.Component {
       <div className ="header"> Bootstrap</div>
 
       <div className ="body">
-      bootstrap
+        <button className ="btn btn-primary" value = "foo">foo</button>
+
+        aaa
       </div>
     </div>;
   }

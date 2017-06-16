@@ -14,11 +14,14 @@ class AppComponent extends React.Component {
           <p>
             This website is mobile friendly
           </p>
+          <p>
+            This project is on github. Follow it here: <a href="https://github.com/dwjohnston/djweb">https://github.com/dwjohnston/djweb</a>
+          </p>
         </div>
 
         <div className = "module-container">
 
-          <BootstrapModule/> 
+          <BootstrapModule/>
 
           <div className = "module">
             <div className = "header">
