@@ -38,14 +38,15 @@ d3Chart._scales = function(el, domain) {
   this.width = el.offsetWidth;
   this.height = el.offsetHeight;
 
-console.log(domain);
+
+
 
   var x = d3.scaleLinear()
     .range([0, this.width])
     .domain(domain.x);
 
   var y = d3.scaleLinear()
-    .range([this.height, 0 ])
+    .range([0, this.height ])
     .domain(domain.y);
 
   var z = d3.scaleLinear()
@@ -60,12 +61,12 @@ console.log(domain);
 
 d3Chart._drawPoints = function(el, scales, data) {
   var g = d3.select(el).selectAll('.d3-points');
-  let barWidth = 10;
+  let barWidth = scales.x(1);
        console.log(data);
   var point = g.selectAll('.d3-point')
     .data(data)           .attr('x', function(d, i) {
                      console.log(d);
-                     return i * barWidth * 2;
+                     return (i * 2 + 1) * barWidth;
                    })
                    .attr('y', 0)
                    .attr('width', barWidth)
@@ -125,10 +126,13 @@ console.log("foo");
   this.state = {};
   this.state.data = [
      {id: '5fbmzmt c', value: 25},
-     {id: 's4f8phwm', value: 50}
+     {id: 's4f8phwm', value: 50},
+     {id: "foo", value: 20},
+          {id: "foo", value: 20},
+               {id: "foo", value: 20},
+                    {id: "foo", value: 20},
   ];
 
-  this.state.domain =  {x: [0, 30], y: [0, 100]};
 }
 
 
@@ -156,9 +160,17 @@ console.log("component did up date");
 getChartState() {
 
   console.log(this.state);
+
+  let maxY = Math.max.apply(Math, this.state.data.map(function(o){return o.value})) * 1.1;
+
+  let domain = {};
+
+  domain.x = [0, this.state.data.length *2 + 1];
+  domain.y = [0,maxY];
+
   return {
     data: this.state.data,
-    domain: this.state.domain
+    domain: domain
   };
 }
 
@@ -195,13 +207,15 @@ console.log(this);
 
     this.textInputs = this.state.data.map((v,i) => {
       console.log(v);
-        return <input
+        return <div className = "input-pair"><input
           type = "text"
           key = {"textInput" + i}
 
           onChange = {(v) => {
             this.handleTextChange(v,i);
           }}/>
+          <span class ="error"/>
+          </div>
 
     });
 

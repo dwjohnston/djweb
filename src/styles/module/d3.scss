@@ -23,14 +23,31 @@ svg {
       display: flex;
       flex-flow: column nowrap;
 
-      input {
-        margin: 0.25em 0;
+
+
+      .input-pair {
+
+        display: flex;
+        flex-flow: row nowrap;
+
+        input {
+          margin: 0.25em;
+        }
+
+        span {
+          width: 2em;
+          height: 2em;
+          margin: 0.1em;
+          border: solid 1px white;
+        }
       }
+
     }
 
 
 
   }
+
 
 
 }
