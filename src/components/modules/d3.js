@@ -1,21 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as d3 from 'd3';
+require('styles/module/d3.scss');
 let  d3Chart = {};
 
 d3Chart.create = function(el, props, state) {
   var svg = d3.select(el).append('svg')
       .attr('class', 'd3')
       .attr('width', props.width)
-      .attr('height', props.height);
+      .attr('height', props.height)
+      .attr('transform', "scale(1, -1)"); //Make y=0 the bottom of the svg
 
   svg.append('g')
       .attr('class', 'd3-points');
 
+console.log(state);
   this.update(el, state);
 };
 
 d3Chart.update = function(el, state) {
+
+  console.log("d3 update");
   // Re-compute the scales, and render the data points
   var scales = this._scales(el, state.domain);
   this._drawPoints(el, scales, state.data);
@@ -30,15 +35,17 @@ d3Chart._scales = function(el, domain) {
     return null;
   }
 
-  var width = el.offsetWidth;
-  var height = el.offsetHeight;
+  this.width = el.offsetWidth;
+  this.height = el.offsetHeight;
+
+console.log(domain);
 
   var x = d3.scaleLinear()
-    .range([0, width])
+    .range([0, this.width])
     .domain(domain.x);
 
   var y = d3.scaleLinear()
-    .range([height, 0])
+    .range([this.height, 0 ])
     .domain(domain.y);
 
   var z = d3.scaleLinear()
@@ -48,20 +55,58 @@ d3Chart._scales = function(el, domain) {
   return {x: x, y: y, z: z};
 };
 
+
+
+
 d3Chart._drawPoints = function(el, scales, data) {
   var g = d3.select(el).selectAll('.d3-points');
-
+  let barWidth = 10;
+       console.log(data);
   var point = g.selectAll('.d3-point')
-    .data(data, function(d) { return d.id; });
+    .data(data)           .attr('x', function(d, i) {
+                     console.log(d);
+                     return i * barWidth * 2;
+                   })
+                   .attr('y', 0)
+                   .attr('width', barWidth)
+                   .attr("value", function(d) {
+                     return d.value;
+                   })
+                   .attr('height', function(d) {
+                     console.log("height");
+                     console.log(d);
+                     console.log(scales.y(d.value));
+                     return  scales.y(d.value);});
 
-  // ENTER
-  point.enter().append('circle')
-      .attr('class', 'd3-point');
 
-  // ENTER & UPDATE
-  point.attr('cx', function(d) { return scales.x(d.x); })
-      .attr('cy', function(d) { return scales.y(d.y); })
-      .attr('r', function(d) { return scales.z(d.z); });
+
+
+    point.enter().append('rect')
+           .attr('class', function(d) {
+             console.log("append rect");
+             return 'd3-point';
+           })
+           .attr('x', function(d, i) {
+                 console.log(d);
+                 return i * barWidth * 2;
+               })
+               .attr('y', 0)
+               .attr('width', barWidth)
+               .attr("value", function(d) {
+                 return d.value;
+               })
+               .attr('height', function(d) {
+                 console.log("height");
+                 console.log(d);
+                 console.log(scales.y(d.value));
+                 return  scales.y(d.value);});
+
+
+
+
+console.log(this);
+console.log(scales);
+console.log(point);
 
   // EXIT
   point.exit()
@@ -73,10 +118,14 @@ class D3Module extends React.Component {
 
 constructor() {
   super();
+
+console.log("con strauct");
+
+console.log("foo");
   this.state = {};
   this.state.data = [
-     {id: '5fbmzmtc', x: 7, y: 41, z: 6},
-     {id: 's4f8phwm', x: 11, y: 45, z: 9}
+     {id: '5fbmzmt c', value: 25},
+     {id: 's4f8phwm', value: 50}
   ];
 
   this.state.domain =  {x: [0, 30], y: [0, 100]};
@@ -84,8 +133,10 @@ constructor() {
 
 
   componentDidMount() {
+
+    console.log("did  mount");
   var el = ReactDOM.findDOMNode(this);
-  d3Chart.create(el, {
+  d3Chart.create(this.svgEl, {
     width: '100%',
     height: '300px'
   }, this.getChartState());
@@ -93,32 +144,77 @@ constructor() {
 }
 
 componentDidUpdate() {
+
+console.log("component did up date");
+
   var el = ReactDOM.findDOMNode(this);
-  d3Chart.update(el, this.getChartState());
+  console.log(el);
+
+  d3Chart.update(this.svgEl, this.getChartState());
 }
 
 getChartState() {
+
+  console.log(this.state);
   return {
-    data: [
-       {id: '5fbmzmtc', x: 7, y: 41, z: 6},
-       {id: 's4f8phwm', x: 11, y: 45, z: 9}
-    ],
-    domain: {x: [0, 30], y: [0, 100]}
+    data: this.state.data,
+    domain: this.state.domain
   };
 }
 
 componentWillUnmount() {
+
+  console.log("will unmount");
+
   var el = ReactDOM.findDOMNode(this);
-  d3Chart.destroy(el);
+  console.log(el);
+  d3Chart.destroy(this.svgEl);
 }
 
+handleTextChange(v,i) {
+console.log("handle text change");
+  console.log(v);
+  console.log(i);
+
+  console.log(v.target.value);
+
+console.log(this);
+  let newState = this.state;
+
+  newState.data[i].value = v.target.value;
+  this.setState(newState)
+
+  d3Chart.update(this.svgEl, this.getChartState());
+
+
+}
 
   render() {
+    console.log("render");
+    console.log(this);
+
+    this.textInputs = this.state.data.map((v,i) => {
+      console.log(v);
+        return <input
+          type = "text"
+          key = {"textInput" + i}
+
+          onChange = {(v) => {
+            this.handleTextChange(v,i);
+          }}/>
+
+    });
+
     return <div className ="module" id = "d3">
       <div className ="header"> D3</div>
 
       <div className ="body">
-      d3
+        <div className = "svg-container" ref={(input) => {this.svgEl = input}}/>
+        <div className ="controls">
+          {this.textInputs}
+        </div>
+
+
       </div>
     </div>;
   }

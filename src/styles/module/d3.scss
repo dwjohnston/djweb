@@ -1,0 +1,36 @@
+svg {
+  background-color: #ddd;
+
+  circle, rect {
+    background-color: red;
+
+    stroke: red;
+    fill: blue;
+  }
+}
+
+#d3 {
+  .body {
+    display:flex;
+    flex-flow: row wrap;
+
+    .svg-container {
+      flex: 1 0 auto;
+    }
+
+    .controls {
+      padding: 1em;
+      display: flex;
+      flex-flow: column nowrap;
+
+      input {
+        margin: 0.25em 0;
+      }
+    }
+
+
+
+  }
+
+
+}
