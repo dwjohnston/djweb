@@ -1,3 +1,5 @@
+@import "../theme";
+
 svg {
   background-color: #ddd;
 
@@ -35,14 +37,27 @@ svg {
           flex: 1 0 auto;
         }
 
-        span.error {
+        .error {
           width: 2em;
           height: 2em;
           margin: 0.1em;
           border: solid 1px white;
 
           &.invalid {
-            background-color: red; 
+            span {
+              display: block;
+              color: $color-error-red;
+              font-size: 1.4em;
+              height: 100%;
+              border: solid 2px transparent;
+              margin-top: 2px;
+            }
+          }
+
+          &.valid {
+            span {
+              display: none;
+            }
           }
         }
       }

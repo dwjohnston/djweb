@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as d3 from 'd3';
+
 require('styles/module/d3.scss');
 let  d3Chart = {};
 
@@ -228,7 +229,9 @@ console.log(this);
           onChange = {(v) => {
             this.handleTextChange(v,i);
           }}/>
-        <span className =  {"error " +  (v.isValid ? "valid" : "invalid")}></span>
+        <div className =  {"error " +  (v.isValid ? "valid" : "invalid")}>
+          <span className ="glyphicon glyphicon-remove"></span> 
+        </div>
 
           </div>
 
@@ -242,8 +245,6 @@ console.log(this);
         <div className ="controls">
           {this.textInputs}
         </div>
-
-
       </div>
     </div>;
   }
