@@ -230,7 +230,7 @@ console.log(this);
             this.handleTextChange(v,i);
           }}/>
         <div className =  {"error " +  (v.isValid ? "valid" : "invalid")}>
-          <span className ="glyphicon glyphicon-remove"></span> 
+          <span className ="glyphicon glyphicon-remove"></span>
         </div>
 
           </div>
@@ -241,7 +241,7 @@ console.log(this);
       <div className ="header"> D3</div>
 
       <div className ="body">
-        <div className = "svg-container" ref={(input) => {this.svgEl = input}}/>
+        <div className = "svg-container" ref={(input) => {this.svgEl = input}}></div>
         <div className ="controls">
           {this.textInputs}
         </div>

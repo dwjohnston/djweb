@@ -1,6 +1,6 @@
 import React from 'react';
-//import '!style!css!bootstrap/dist/css/bootstrap.min.css';
-
+import {Panel, ButtonToolbar, Button} from 'react-bootstrap';
+require('styles/module/bootstrap.scss');
 
 class BootstrapModule extends React.Component {
 
@@ -9,9 +9,17 @@ class BootstrapModule extends React.Component {
       <div className ="header"> Bootstrap</div>
 
       <div className ="body">
-        <button className ="btn btn-primary" value = "foo">foo</button>
 
-        aaa
+        <Panel bsStyle ="primary" header="My Nice Form">
+
+
+
+          <ButtonToolbar className ="pull-right">
+            <Button bsStyle="default">Cancel</Button>
+            <Button bsStyle="primary">Submit</Button>
+          </ButtonToolbar>
+        </Panel>
+
       </div>
     </div>;
   }

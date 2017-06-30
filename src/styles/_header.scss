@@ -1,3 +1,14 @@
+body {
+
+  background-color: $color-background-black;
+}
+
+div.index {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
 #header {
 
   padding: 1em;
@@ -16,15 +27,14 @@
     }
 }
 
+#body {
+  flex: 1 0 auto;
+}
+
 #footer {
   border: solid 1px $color-grey2;
   border-width: 1px 0 0 0;
   background-color: $color-grey1;
-
-  position: absolute;
-  bottom:0;
-  left: 0;
-  right: 0;
 
   padding: 1em;
 }

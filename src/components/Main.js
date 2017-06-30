@@ -2,9 +2,9 @@ require('normalize.css/normalize.css');
 require('styles/style.scss');
 
 import React from 'react';
-
 import BootstrapModule from 'components/modules/bootstrap';
-
+import D3Module from 'components/modules/d3';
+import CssAnimationModule from 'components/modules/css-animation';
 class AppComponent extends React.Component {
   render() {
     return (
@@ -19,35 +19,41 @@ class AppComponent extends React.Component {
           </p>
         </div>
 
-        <div className = "module-container">
+        <div id = "body">
+          <div className = "module-container">
 
-          <BootstrapModule/>
+            <BootstrapModule/>
 
-          <div className = "module">
-            <div className = "header">
-              header
+            <D3Module/>
+
+            <CssAnimationModule/>
+
+            <div className = "module">
+              <div className = "header">
+                header
+              </div>
+              <div className ="body">
+
+              body
+
+              </div>
+              foo
             </div>
-            <div className ="body">
 
-            body
+            <div className = "module">
+              <div className = "header">
+                header
+              </div>
+              <div className ="body">
 
-          </div>
-            foo
-          </div>
+                body
 
-          <div className = "module">
-            <div className = "header">
-              header
+              </div>
             </div>
-            <div className ="body">
-
-            body
 
           </div>
-          </div>
+
         </div>
-
-
         <div id ="footer">
           footer
         </div>
