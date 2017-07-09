@@ -243,7 +243,7 @@ class OpenDataModule extends React.Component {
 
   constructor() {
     super();
-    this.apiKey="";
+    this.apiKey=""; //If you're here from github and looking for API keys, nice try :)
     this.apiBase ="https://api.themoviedb.org/3/";
     this.state = {currentMovie: {}};
 
