@@ -4,6 +4,8 @@ require('styles/style.scss');
 import React from 'react';
 import BootstrapModule from 'components/modules/bootstrap';
 import D3Module from 'components/modules/d3';
+import OpenDataModule from 'components/modules/opendata';
+
 import CssAnimationModule from 'components/modules/css-animation';
 class AppComponent extends React.Component {
   render() {
@@ -27,7 +29,7 @@ class AppComponent extends React.Component {
             <D3Module/>
 
             <CssAnimationModule/>
-
+            <OpenDataModule />
             <div className = "module">
               <div className = "header">
                 header

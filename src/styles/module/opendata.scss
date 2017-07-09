@@ -1,0 +1,48 @@
+@import "../theme";
+
+#opendata {
+  .body {
+    display: flex;
+    flex-flow: row nowrap;
+
+    div {
+      flex: 0 1 auto;
+      padding: 1em;
+    }
+
+  }
+
+  .img-container {
+
+    display:flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items:center;
+
+    img {
+      max-width: 30em;
+      max-height: 30em;
+    }
+  }
+
+
+}
+
+.movie, .person {
+
+  tr {
+    td:first-child{
+      width: 8em;
+    }
+
+    td {
+          padding: 0.25em;
+    }
+  }
+
+  li,ul {
+    list-style-type: none;
+    padding: 0.1em;
+    padding-left:0;
+  }
+}
