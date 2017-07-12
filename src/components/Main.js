@@ -19,6 +19,15 @@ class AppComponent extends React.Component {
           <p>
             This project is on github. Follow it here: <a href="https://github.com/dwjohnston/djweb">https://github.com/dwjohnston/djweb</a>
           </p>
+
+          <p>
+            <strong> FAQ</strong>
+            <ul>
+            <li> Q. This website looks ugly! </li>
+            <li> A. I'm prioritising functionality over looks. I'm putting this up as quick as I can yo. </li>
+            </ul> 
+          </p>
+
         </div>
 
         <div id = "body">

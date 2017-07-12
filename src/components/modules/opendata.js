@@ -264,6 +264,15 @@ class OpenDataModule extends React.Component {
     this.findMovieById(381288);
   }
 
+  click2() {
+    fetch("/api/users")
+    .then (res => res.json())
+    .then (users => {
+      console.log(users);
+    });
+
+    }
+
 
   render() {
     return <div className ="module" id = "opendata">
@@ -273,6 +282,10 @@ class OpenDataModule extends React.Component {
         <div> <button onClick = {()=>{
             this.click();
           }}> click me</button>
+
+          <button onClick = {()=>{
+              this.click2();
+            }}> click me</button>
 
 
         {this.state.currentMovie &&   <Movie item = {this.state.currentMovie} findPersonById = {(id) => {this.findPersonById(id);}}/>}

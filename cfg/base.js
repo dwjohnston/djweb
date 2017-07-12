@@ -20,6 +20,12 @@ module.exports = {
     publicPath: defaultSettings.publicPath
   },
   devServer: {
+    proxy: {
+    "/api": {
+      target: "http://localhost:3000",
+      pathRewrite: {"^/api" : ""}
+    }
+  },
     contentBase: './src/',
     historyApiFallback: true,
     hot: true,
