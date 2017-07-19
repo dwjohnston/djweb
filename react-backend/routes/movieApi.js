@@ -14,20 +14,31 @@ fetch(apiBase + "configuration" +  "?api_key=" + apiKey).then(result => result.j
   apiConfig = json;
 });
 
+var arr = [1,2,3];
+console.log(arr.includes(1));
 
 
 
 router.get("/movie/:id", function(req, res, next){
     var id = req.params.id;
+    console.log(id);
 
     var prom1 = fetch(apiBase + "movie/" + id + "?api_key=" + apiKey).then(result=> result.json())
   .then(json => {
 
     var allowedKeys = ['title', 'genres', 'tagline', 'overview', 'release_date'];
-    var filtered = Object.keys(json)
-      .filter(key => allowedKeys.includes(key))
-      ;
+    console.log(json);
 
+    console.log(Object.keys(json));
+    var filtered = Object.keys(json)
+      .filter(key => {
+        console.log(key);
+        console.log( allowedKeys.includes(key));
+        return allowedKeys.includes(key)
+      })
+      ;
+      console.log(filtered);
+      console.log("prom1");
       return filtered;
 
   }
@@ -41,7 +52,7 @@ router.get("/movie/:id", function(req, res, next){
         var filtered = Object.keys(json)
           .filter(key => allowedKeys.includes(key))
           ;
-
+console.log("prom2");
           return filtered;
       })
       ;
@@ -49,15 +60,17 @@ router.get("/movie/:id", function(req, res, next){
       var prom3 =     fetch(apiBase + "movie/" + id + "/images?api_key=" + apiKey ).then(result => result.json())
     .then(json => {
 
-
+console.log("prom3");
     return  {currentImg: [imgBase, apiConfig.images.poster_sizes[1], json.posters[0].file_path].join('/')};
 
     });
 
     var promises = [prom1, prom2, prom3];
-
+    console.log(promises);
     Promise.all(promises).then(values => {
-      return Object.assign({}, ...values);
+      console.log(values);
+
+      return Object.assign({}, values);
     }).then(data => console.log(data));
 });
 
