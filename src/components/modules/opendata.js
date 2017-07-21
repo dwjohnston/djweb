@@ -224,8 +224,8 @@ class OpenDataModule extends React.Component {
 
   findMovieById(id) {
     //console.log(apiKey);
-
-    fetch("/movieApi/movie").then(result=> result.json())
+    console.log("find movie");
+    fetch("/api/movieApi/movie/" + id).then(result=> result.json())
     .then(json => {
       console.log(json)
 
@@ -235,6 +235,14 @@ class OpenDataModule extends React.Component {
     }
     );
 
+
+  }
+
+  getMovie(id) {
+
+  }
+
+  getPerson(id) {
 
   }
 
