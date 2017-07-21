@@ -25,7 +25,7 @@ class AppComponent extends React.Component {
             <ul>
             <li> Q. This website looks ugly! </li>
             <li> A. I'm prioritising functionality over looks. I'm putting this up as quick as I can yo. </li>
-            </ul> 
+            </ul>
           </p>
 
         </div>
