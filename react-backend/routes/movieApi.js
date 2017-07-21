@@ -4,7 +4,7 @@ var fetch = require('node-fetch');
 
 
 
-var apiKey=""; //If you're here from github and looking for API keys, nice try :)
+var apiKey = process.env.MOVIE_DB_API_KEY;
 var apiBase ="https://api.themoviedb.org/3/";
 var imageBase, apiConfig;
 
