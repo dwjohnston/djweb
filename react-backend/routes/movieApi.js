@@ -14,13 +14,19 @@ fetch(apiBase + "configuration" +  "?api_key=" + apiKey).then(result => result.j
   apiConfig = json;
 });
 
-function filterByKeys(allowedKeys, obj) {
-  let filtered = Object.keys(obj)
+function filterByKeys(allowedKeys, json) {
+  let filtered = Object.keys(json)
   .filter(key => {
     return allowedKeys.includes(key)
-  });
+  }).reduce((obj, key) => {
+    obj[key] = json[key];
+    return obj;
+  }, {});
   return filtered;
 }
+
+
+//Should probably tidy this stuff up in to a generic function, but you know, it's working for now.
 
 router.get("/movie/:id", function(req, res, next){
   var id = req.params.id;
@@ -44,13 +50,16 @@ var prom2 =     fetch(apiBase + "movie/" + id + "/credits"+"?api_key=" + apiKey 
 var prom3 =     fetch(apiBase + "movie/" + id + "/images?api_key=" + apiKey ).then(result => result.json())
 .then(json => {
 
+  if (json.posters.size > 0 )
   return  {currentImg: [imgBase, apiConfig.images.poster_sizes[1], json.posters[0].file_path].join('/')};
-
+  else return {currentImg: null};
 });
 
 var promises = [prom1, prom2, prom3];
 Promise.all(promises).then(values => {
-  return Object.assign({}, values);
+
+  console.log(values);
+  return Object.assign(...values);
 }).then(data => res.json(data));
 });
 
@@ -61,7 +70,7 @@ router.get("/person/:id", function(req, res, next){
   var id = req.params.id;
 
 
-  let prom1 = fetch(this.apiBase + "person/" + id + "?api_key=" + this.apiKey ).then(result => result.json())
+  let prom1 = fetch(apiBase + "person/" + id + "?api_key=" + apiKey ).then(result => result.json())
   .then(json => {
     let allowedKeys = ['name', 'birthday', 'biography'];
     return filterByKeys(allowedKeys, json);
@@ -70,7 +79,7 @@ router.get("/person/:id", function(req, res, next){
 
 
 
-  let prom2 =  fetch(this.apiBase + "person/" + id + "/movie_credits"+"?api_key=" + this.apiKey ).then(result=> result.json())
+  let prom2 =  fetch(apiBase + "person/" + id + "/movie_credits"+"?api_key=" + apiKey ).then(result=> result.json())
   .then(json => {
     let allowedKeys = ['cast', 'crew'];
     return filterByKeys(allowedKeys, json);
@@ -79,15 +88,22 @@ router.get("/person/:id", function(req, res, next){
 
 
 
-  let prom3 =  fetch(this.apiBase + "person/" + id + "/images?api_key=" + this.apiKey ).then(result => result.json())
+  let prom3 =  fetch(apiBase + "person/" + id + "/images?api_key=" + apiKey ).then(result => result.json())
   .then(json => {
-    return {currentImg: [this.imgBase, this.apiConfig.images.profile_sizes[1], json.profiles[0].file_path].join('/')};
+
+    if (json.profiles.length > 0 ){
+      return {currentImg: [imgBase, apiConfig.images.profile_sizes[1], json.profiles[0].file_path].join('/')};
+    }
+    else{
+       return {currentImg: null};
+    }
+
 
   });
 
   let promises = [prom1, prom2, prom3];
   Promise.all(promises).then(values => {
-    return Object.assign({}, values);
+    return Object.assign(...values);
   }).then(data => res.json(data));
 });
 

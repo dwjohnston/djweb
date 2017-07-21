@@ -147,103 +147,28 @@ class Actor extends React.Component {
 class OpenDataModule extends React.Component {
 
 
-  findImageOfPerson(id) {
-    fetch(this.apiBase + "person/" + id + "/images?api_key=" + this.apiKey ).then(result => result.json())
-    .then(json => {
-      console.log(json);
-
-      this.setState(Object.assign({}, {currentImg: [this.imgBase, this.apiConfig.images.profile_sizes[1], json.profiles[0].file_path].join('/')}));
-
-    });
-  }
-
-  findImageOfMovie(id) {
-    fetch(this.apiBase + "movie/" + id + "/images?api_key=" + this.apiKey ).then(result => result.json())
-    .then(json => {
-      console.log(json);
-
-      this.setState(Object.assign({}, {currentImg: [this.imgBase, this.apiConfig.images.poster_sizes[1], json.posters[0].file_path].join('/')}));
-
-      console.log(this.state);
-    });
-  }
 
 
-
-  findPersonById(id) {
-
-    console.log(id);
-
-    fetch(this.apiBase + "person/" + id + "?api_key=" + this.apiKey ).then(result => result.json())
-    .then(json => {
-      console.log(json);
-
-      this.setState(Object.assign({}, {currentPerson: json, currentMovie: null}));
-
-      console.log(this.state);
-
-      this.findCreditsOfPerson(id);
-      this.findImageOfPerson(id);
-
-    });
-  }
-
-  findCreditsOfPerson(id) {
-    fetch(this.apiBase + "person/" + id + "/movie_credits"+"?api_key=" + this.apiKey ).then(result=> result.json())
-    .then(json => {
-      console.log(json);
-
-      let newState = Object.assign({}, this.state);
-      newState.currentPerson.cast = json.cast;
-      newState.currentPerson.crew = json.crew;
-
-      this.setState(Object.assign({}, newState));
-
-
-    })
-    ;
-
-
-  }
-
-  findCreditsOfMovie(id){
-    fetch(this.apiBase + "movie/" + id + "/credits"+"?api_key=" + this.apiKey ).then(result=> result.json())
-    .then(json => {
-      console.log(json);
-
-      let newState = Object.assign({}, this.state);
-      newState.currentMovie.cast = json.cast;
-      newState.currentMovie.crew = json.crew;
-
-      this.setState(Object.assign({}, newState));
-
-
-    })
-    ;
-  }
-
-  findMovieById(id) {
-    //console.log(apiKey);
-    console.log("find movie");
+  getMovie(id) {
     fetch("/api/movieApi/movie/" + id).then(result=> result.json())
     .then(json => {
-      console.log(json)
 
       this.setState( {currentMovie: json, currentPerson: null});
-      this.findCreditsOfMovie(id);
-      this.findImageOfMovie(id);
+
     }
     );
 
 
-  }
-
-  getMovie(id) {
 
   }
 
   getPerson(id) {
+    fetch("/api/movieApi/person/" + id).then(result=> result.json())
+    .then(json => {
 
+      this.setState( {currentMovie: null, currentPerson: json});
+
+    });
   }
 
 
@@ -251,25 +176,12 @@ class OpenDataModule extends React.Component {
 
   constructor() {
     super();
-    this.apiKey=""; //If you're here from github and looking for API keys, nice try :)
-    this.apiBase ="https://api.themoviedb.org/3/";
     this.state = {currentMovie: {}};
 
-    fetch(this.apiBase + "configuration" +  "?api_key=" + this.apiKey).then(result => result.json())
-    .then (json => {
-      this.imgBase = json.images.base_url;
-      this.apiConfig = json;
-    });
-
-    //this.click();
-    // let qParam = "farmer_id";
-    // fetch(apiBase + "?farmer_id=3402").then(result=> result.json())
-    // .then(json => console.log(json))
-    // ;
   }
 
   click() {
-    this.findMovieById(381288);
+    this.getMovie(381288);
   }
 
   click2() {
@@ -296,11 +208,12 @@ class OpenDataModule extends React.Component {
             }}> click me</button>
 
 
-        {this.state.currentMovie &&   <Movie item = {this.state.currentMovie} findPersonById = {(id) => {this.findPersonById(id);}}/>}
-        {this.state.currentPerson &&  <Actor item = {this.state.currentPerson} findMovieById = {(id) => {this.findMovieById(id);}}/>}
+        {this.state.currentMovie &&   <Movie item = {this.state.currentMovie} findPersonById = {(id) => {this.getPerson(id);}}/>}
+        {this.state.currentPerson &&  <Actor item = {this.state.currentPerson} findMovieById = {(id) => {this.getMovie(id);}}/>}
         </div>
         <div className = "img-container">
-          {this.state.currentImg &&<img src ={this.state.currentImg}/>}
+          {this.state.currentMovie && <img src ={this.state.currentMovie.currentImg}/>}
+          {this.state.currentPerson && <img src ={this.state.currentPerson.currentImg}/>}
         </div>
       </div>
     </div>;
