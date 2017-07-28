@@ -1,5 +1,5 @@
 import React from 'react';
-import {Panel, ButtonToolbar, Button, DropdownButton, ButtonGroup, MenuItem, Tabs, Tab} from 'react-bootstrap';
+import {Panel, ButtonToolbar, Button, DropdownButton, ButtonGroup, MenuItem, Tabs, Tab, FormGroup, FormControl, ControlLabel, Checkbox, Radio} from 'react-bootstrap';
 require('styles/module/bootstrap.scss');
 
 class BootstrapModule extends React.Component {
@@ -16,12 +16,42 @@ class BootstrapModule extends React.Component {
             <Tab eventKey={1} title="Tab 1">
 
 
-              <DropdownButton title="Flavour" id="bg-vertical-dropdown-1">
-                <MenuItem eventKey="1">Chocolate</MenuItem>
-                <MenuItem eventKey="2">Vanilla</MenuItem>
-                <MenuItem eventKey="3">Strawberry</MenuItem>
-              </DropdownButton>
+              <form>
 
+              <FormGroup>
+                <ControlLabel> Favourite Flavor</ControlLabel>
+                <FormControl componentClass="select">
+                            <option value="chocolate">Chocolate</option>
+                            <option value="vanilla">Vanilla</option>
+                            <option value="Strawberry">Strawberry</option>
+                        </FormControl>
+              </FormGroup>
+
+              <FormGroup>
+                <ControlLabel> Genres of music </ControlLabel>
+                <Checkbox inline>Rock</Checkbox>
+                <Checkbox inline>Pop</Checkbox>
+                <Checkbox inline>Dance</Checkbox>
+                <Checkbox inline>Acoustic</Checkbox>
+              </FormGroup>
+
+                 <FormGroup>
+                 <ControlLabel> Sex </ControlLabel>
+                  <Radio name = "sex" inline>Male</Radio>
+                    <Radio name = "sex" inline>Female</Radio>
+                      <Radio name = "sex" inline>Other</Radio>
+                 </FormGroup>
+
+                 <FormGroup>
+                  <ControlLabel> Enter some text about yourself</ControlLabel>
+                  <FormControl componentClass="textarea" placeholder="textarea" />
+                 </FormGroup>
+
+                 <ButtonToolbar className ="pull-right">
+                   <Button bsStyle="default">Cancel</Button>
+                   <Button bsStyle="primary">Submit</Button>
+                 </ButtonToolbar>
+              </form>
 
 
             </Tab>
@@ -35,10 +65,7 @@ class BootstrapModule extends React.Component {
 
 
 
-          <ButtonToolbar className ="pull-right">
-            <Button bsStyle="default">Cancel</Button>
-            <Button bsStyle="primary">Submit</Button>
-          </ButtonToolbar>
+
         </Panel>
 
       </div>
