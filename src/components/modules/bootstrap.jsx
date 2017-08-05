@@ -1,8 +1,144 @@
 import React from 'react';
-import {Panel, ButtonToolbar, Button, DropdownButton, ButtonGroup, MenuItem, Tabs, Tab, FormGroup, FormControl, ControlLabel, Checkbox, Radio} from 'react-bootstrap';
+import {Panel, ButtonToolbar, Button, DropdownButton, ButtonGroup, MenuItem, Tabs, Tab, FormGroup, HelpBlock, FormControl, ControlLabel, Checkbox, Radio} from 'react-bootstrap';
+
 require('styles/module/bootstrap.scss');
 
 class BootstrapModule extends React.Component {
+
+  constructor(){
+    super();
+
+
+    this.state = {
+      form: this.getInitialForm(),
+      validation: this.getInitialValidation(),
+      output: {},
+    };
+
+
+  }
+
+
+  getInitialForm() {
+    return {
+      aboutSelf:'',
+      name: '',
+      flavour: "chocolate",
+      gender: null,
+      music: [],
+    };
+  }
+
+  /*ugh, hate this too*/
+  getInitialValidation() {
+    return {
+      aboutSelf: null,
+      name: null,
+      flavour: null,
+      gender: null,
+      music: null
+    };
+  }
+
+
+  getValidationState(id){
+    return this.state.validation[id];
+  }
+
+  validateElement(id, validationType) {
+    let  notEmpty = (value) => {
+      let newState = Object.assign({}, this.state);
+      newState.validation[id] = (value && value.length > 0) ?  null : "error";
+      this.setState(newState);
+    }
+
+    switch (validationType) {
+      case "not-empty": notEmpty(this.state.form[id]);
+    }
+  }
+
+  validateForm() {
+    //Hacky but,
+
+    this.validateElement("name", "not-empty");
+    this.validateElement("aboutSelf", "not-empty");
+    this.validateElement("gender", "not-empty");
+
+  }
+
+  isFormValid() {
+
+    for (let key in this.state.validation){
+      if (this.state.validation[key]){
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+
+  handleRadioChange(e, id) {
+
+    console.log(e.target.value);
+    let newState = Object.assign({}, this.state);
+
+
+    if (e.target.value) {
+      newState[groupId].push(music);
+    }
+    else {
+      let index = newState[groupId].arrayOf(music);
+      if (index > -1){
+        newState[groupId].splice(index, 1);
+      }
+    }
+
+    this.setState(newState);
+  }
+
+  //This is hacky as fuck, but I'm so over this.
+  handleCheckboxChange(e, groupId, value) {
+    let newState = Object.assign({}, this.state);
+    if (e.target.value) {
+      newState.form[groupId].push(value);
+    }
+    else {
+      let index = newState[groupId].arrayOf(value);
+      if (index > -1){
+        newState.form[groupId].splice(index, 1);
+      }
+    }
+
+    this.setState(newState);
+  }
+
+  handleChange(e, id){
+    let newState = Object.assign({}, this.state);
+    newState.form[id] = e.target.value;
+    this.setState(newState);
+  }
+
+  handleSubmit(e) {
+    console.log("handle submit");
+    e.preventDefault();
+
+    this.validateForm();
+    if(this.isFormValid()){
+      let newState = Object.assign({}, this.state);
+      newState.output = Object.assign({}, this.state.form);
+      this.setState(newState);
+    }
+
+
+  }
+
+  handleReset(e) {
+    let newState = Object.assign({}, this.state);
+    newState.form = this.getInitialForm();
+    newState.validation = this.getInitialValidation();
+    this.setState(newState);
+  }
 
   render() {
     return <div className ="module" id = "bootstrap">
@@ -13,64 +149,154 @@ class BootstrapModule extends React.Component {
         <Panel bsStyle ="primary" header="My Nice Form">
 
           <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
-            <Tab eventKey={1} title="Tab 1">
+            <Tab eventKey={1} title="Form">
 
 
-              <form>
+              <form
+                onSubmit = {(e) =>this.handleSubmit(e)}
+                onReset = {(e) => this.handleReset(e)}
 
-              <FormGroup>
-                <ControlLabel> Favourite Flavor</ControlLabel>
-                <FormControl componentClass="select">
-                            <option value="chocolate">Chocolate</option>
-                            <option value="vanilla">Vanilla</option>
-                            <option value="Strawberry">Strawberry</option>
-                        </FormControl>
-              </FormGroup>
+                >
 
-              <FormGroup>
-                <ControlLabel> Genres of music </ControlLabel>
-                <Checkbox inline>Rock</Checkbox>
-                <Checkbox inline>Pop</Checkbox>
-                <Checkbox inline>Dance</Checkbox>
-                <Checkbox inline>Acoustic</Checkbox>
-              </FormGroup>
+                <FormGroup
+                  validationState={this.getValidationState("name", "not-empty")}
+                  >
+                  <ControlLabel> Name</ControlLabel>
+                  <FormControl type="text"
+                    id ="name"
+                    value = {this.state.form.name}
+                    onChange = {(e) => this.handleChange(e, "name")}
+                    onBlur = {(e) => this.validateElement("name", "not-empty")}
+                    />
 
-                 <FormGroup>
-                 <ControlLabel> Sex </ControlLabel>
-                  <Radio name = "sex" inline>Male</Radio>
-                    <Radio name = "sex" inline>Female</Radio>
-                      <Radio name = "sex" inline>Other</Radio>
-                 </FormGroup>
+                  <HelpBlock>Name may not be empty</HelpBlock>
+                </FormGroup>
 
-                 <FormGroup>
-                  <ControlLabel> Enter some text about yourself</ControlLabel>
-                  <FormControl componentClass="textarea" placeholder="textarea" />
-                 </FormGroup>
+                <FormGroup
 
-                 <ButtonToolbar className ="pull-right">
-                   <Button bsStyle="default">Cancel</Button>
-                   <Button bsStyle="primary">Submit</Button>
-                 </ButtonToolbar>
-              </form>
-
-
-            </Tab>
-            <Tab eventKey={2} title="Tab 2">
-              <p>
-                Lorem ipsum dolor sit amet, at quaestio consetetur pro. Qui doming graecis an, mazim fierent at est. An brute ullum eos, libris fuisset duo et, et duo vide ornatus detraxit. Ex facer paulo facilisi sit, posse minimum cu vim, vel animal delenit suscipiantur ex. Ut mediocrem principes definitionem sit, ne dicant possim assueverit mel. Veri idque appetere usu an, possit equidem neglegentur in duo, vidit commodo eos no. Modus habemus conceptam his at.
-              </p>
-
-            </Tab>
-          </Tabs>
+                  >
+                  <ControlLabel> Favourite Flavour</ControlLabel>
+                  <FormControl componentClass="select"
+                    id ="flavour"
+                    value = {this.state.form.flavour}
+                    onChange = {(e) => this.handleChange(e, "flavour")}
+                    >
+                    <option value="chocolate">Chocolate</option>
+                    <option value="vanilla">Vanilla</option>
+                    <option value="strawberry">Strawberry</option>
+                  </FormControl>
+                </FormGroup>
 
 
 
+                {/***
+                  Checkbox and radio groups really need their own container item, similar to FormControl
+                  */}
+                  <FormGroup>
+                    <ControlLabel> Genres of music </ControlLabel>
 
-        </Panel>
+                    <Checkbox inline
+                      onChange = {(e) => this.handleCheckboxChange(e, "music", "rock")}
+                      >
+                      Rock
+                    </Checkbox>
+                    <Checkbox inline
+                      onChange = {(e) => this.handleCheckboxChange(e, "music", "pop")}
+                      >
+                      Pop
+                    </Checkbox>
+                    <Checkbox inline
+                      onChange = {(e) => this.handleCheckboxChange(e, "music", "dance")}
+                      >
+                      Dance
+                    </Checkbox>
+                    <Checkbox inline
+                      onChange = {(e) => this.handleCheckboxChange(e, "music", "acoustic")}
+                      >
+                      Acoustic
+                    </Checkbox>
 
-      </div>
-    </div>;
-  }
-}
+                  </FormGroup>
 
-export default BootstrapModule;
+                  <FormGroup
+                    validationState={this.getValidationState("gender")}
+                    >
+                    <ControlLabel> Gender </ControlLabel>
+
+                    <Radio inline name = "gender" value="male"     onChange = {(e) => {
+                        this.handleChange(e, "gender");
+                        this.validateElement("gender", "not-empty");
+                        console.log("a");
+                      }}>Male
+                    </Radio>
+                    <Radio inline name = "gender" value="female"   onChange = {(e) => {
+                        this.handleChange(e, "gender");
+                        this.validateElement("gender", "not-empty");
+                        console.log("a");
+
+                      }}> Female
+                    </Radio>
+                    <Radio inline name = "gender" value="non-binary"   onChange = {(e) => {
+                        this.handleChange(e, "gender");
+                        this.validateElement("gender", "not-empty");
+                        console.log("a");
+
+                      }}>Non-binary
+                    </Radio>
+                      <HelpBlock> Please enter a gender</HelpBlock>
+                    </FormGroup>
+
+                    <FormGroup
+                      validationState = {this.getValidationState("aboutSelf", "not-empty")}
+                      >
+                      <ControlLabel> Enter some text about yourself</ControlLabel>
+                      <FormControl
+                        componentClass="textarea"
+                        id ="aboutSelf"
+                        value = {this.state.form.aboutSelf}
+                        onChange = {(e) => this.handleChange(e, "aboutSelf")}
+                        onBlur = {(e) => this.validateElement("aboutSelf", "not-empty")}
+
+                        />
+
+                      <HelpBlock>Please enter something about yourself</HelpBlock>
+
+                    </FormGroup>
+
+                    <ButtonToolbar className ="pull-right">
+                      <Button bsStyle="default" type = "reset">Cancel</Button>
+                      <Button bsStyle="primary" type = "submit">Submit</Button>
+                    </ButtonToolbar>
+                  </form>
+
+
+                </Tab>
+                <Tab eventKey={2} title="About">
+
+                  <h2> This is an info box</h2>
+
+                  <p>
+                    I hope you're having a lovely day :)
+
+                  </p>
+
+                </Tab>
+              </Tabs>
+
+
+
+
+            </Panel>
+
+            <code>
+
+              {JSON.stringify(this.state.output)}
+
+            </code>
+
+          </div>
+        </div>;
+      }
+    }
+
+    export default BootstrapModule;

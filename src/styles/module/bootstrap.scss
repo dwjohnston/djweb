@@ -6,3 +6,19 @@
 .tab-content {
   padding: 1em;
 }
+
+#bootstrap {
+
+  .form-group:not(.has-error) {
+    .help-block {
+      visibility: hidden;
+    }
+  }
+
+  .form-group {
+    .control-label {
+      display: block;
+    }
+  }
+
+}
