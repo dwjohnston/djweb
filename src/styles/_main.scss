@@ -1,7 +1,17 @@
 
 
 .module-container {
-  margin: 2em;
-display: flex;
-flex-flow: row wrap;
+
+  display:flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  margin: 0;
+
+
+  @include tablet-up{
+    margin: 2em;
+    flex-flow: row wrap;
+  }
+
+
 }

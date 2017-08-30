@@ -18,59 +18,35 @@ class AppComponent extends React.Component {
           </p>
           <p>
             This project is on github. Follow it here: <a href="https://github.com/dwjohnston/djweb">https://github.com/dwjohnston/djweb</a>
-          </p>
+        </p>
 
-          <p>
-            <strong> FAQ</strong>
-            <ul>
+        <p>
+          <strong> FAQ</strong>
+          <ul>
             <li> Q. This website looks ugly! </li>
             <li> A. I'm prioritising functionality over looks. I'm putting this up as quick as I can yo. </li>
-            </ul>
-          </p>
+          </ul>
+        </p>
+
+      </div>
+
+      <div id = "body">
+        <div className = "module-container">
+
+          <BootstrapModule/>
+          <D3Module/>
+          <CssAnimationModule/>
+          <OpenDataModule />
 
         </div>
+      </div>
 
-        <div id = "body">
-          <div className = "module-container">
-
-            <BootstrapModule/>
-
-            <D3Module/>
-
-            <CssAnimationModule/>
-            <OpenDataModule />
-            <div className = "module">
-              <div className = "header">
-                header
-              </div>
-              <div className ="body">
-
-              body
-
-              </div>
-              foo
-            </div>
-
-            <div className = "module">
-              <div className = "header">
-                header
-              </div>
-              <div className ="body">
-
-                body
-
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-        <div id ="footer">
-          footer
-        </div>
+      <div id ="footer">
+        footer
+      </div>
     </div>
-    );
-  }
+  );
+}
 }
 
 AppComponent.defaultProps = {

@@ -5,6 +5,9 @@ body {
 }
 
 @import "theme";
+
+@import "mixin/media";
+
 @import "main";
 @import "header";
 @import "module";

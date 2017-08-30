@@ -137,6 +137,7 @@ class BootstrapModule extends React.Component {
     let newState = Object.assign({}, this.state);
     newState.form = this.getInitialForm();
     newState.validation = this.getInitialValidation();
+    newState.output = {};
     this.setState(newState);
   }
 
@@ -148,7 +149,7 @@ class BootstrapModule extends React.Component {
 
         <Panel bsStyle ="primary" header="My Nice Form">
 
-          <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
+          <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
             <Tab eventKey={1} title="Form">
 
 
@@ -273,12 +274,14 @@ class BootstrapModule extends React.Component {
                 </Tab>
                 <Tab eventKey={2} title="About">
 
-                  <h2> This is an info box</h2>
+                  <h2> About</h2>
 
                   <p>
                     I hope you're having a lovely day :)
 
                   </p>
+
+                  <img className ="image-kitten" src ="images/kitten.jpg"/>
 
                 </Tab>
               </Tabs>
@@ -289,8 +292,8 @@ class BootstrapModule extends React.Component {
             </Panel>
 
             <code>
-
-              {JSON.stringify(this.state.output)}
+              Output:<br/>
+            {JSON.stringify(this.state.output, null, 2)}
 
             </code>
 
