@@ -1,3 +1,4 @@
+"use strict"
 var express = require('express');
 var router = express.Router();
 var fetch = require('node-fetch');
@@ -34,6 +35,8 @@ router.get("/movie/:id", function(req, res, next){
   var prom1 = fetch(apiBase + "movie/" + id + "?api_key=" + apiKey).then(result=> result.json())
   .then(json => {
 
+
+    console.log("prom1");
     var allowedKeys = ['title', 'genres', 'tagline', 'overview', 'release_date'];
     return filterByKeys(allowedKeys, json);
   }
@@ -41,6 +44,9 @@ router.get("/movie/:id", function(req, res, next){
 
 var prom2 =     fetch(apiBase + "movie/" + id + "/credits"+"?api_key=" + apiKey ).then(result=> result.json())
 .then(json => {
+
+  console.log("prom2");
+
   var allowedKeys = ['cast', 'crew'];
   return filterByKeys(allowedKeys, json);
 
@@ -49,6 +55,7 @@ var prom2 =     fetch(apiBase + "movie/" + id + "/credits"+"?api_key=" + apiKey 
 
 var prom3 =     fetch(apiBase + "movie/" + id + "/images?api_key=" + apiKey ).then(result => result.json())
 .then(json => {
+  console.log(json);
 
   if (json.posters.size > 0 )
   return  {currentImg: [imgBase, apiConfig.images.poster_sizes[1], json.posters[0].file_path].join('/')};
@@ -56,11 +63,23 @@ var prom3 =     fetch(apiBase + "movie/" + id + "/images?api_key=" + apiKey ).th
 });
 
 var promises = [prom1, prom2, prom3];
+
+
 Promise.all(promises).then(values => {
 
+
+console.log
   console.log(values);
+  console.log("values");
   return Object.assign(...values);
-}).then(data => res.json(data));
+}).then(data => {
+
+console.log("data");
+console.log(data);
+console.log("data");
+  res.json(data);
+
+});
 });
 
 

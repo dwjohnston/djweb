@@ -150,7 +150,7 @@ class OpenDataModule extends React.Component {
 
 
   getMovie(id) {
-    fetch("/api/movieApi/movie/" + id).then(result=> result.json())
+    fetch("/movieApi/movie/" + id).then(result=> result.json())
     .then(json => {
 
       this.setState( {currentMovie: json, currentPerson: null});
@@ -163,7 +163,7 @@ class OpenDataModule extends React.Component {
   }
 
   getPerson(id) {
-    fetch("/api/movieApi/person/" + id).then(result=> result.json())
+    fetch("/movieApi/person/" + id).then(result=> result.json())
     .then(json => {
 
       this.setState( {currentMovie: null, currentPerson: json});

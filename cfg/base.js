@@ -21,9 +21,8 @@ module.exports = {
   },
   devServer: {
     proxy: {
-    "/api": {
-      target: "http://localhost:3000",
-      pathRewrite: {"^/api" : ""}
+    "/movieApi": {
+      target: "http://localhost:3000"
     }
   },
     contentBase: './src/',
