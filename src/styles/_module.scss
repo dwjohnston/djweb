@@ -1,4 +1,6 @@
-.module {
+section.module {
+
+  display: block;
 
   flex: 0 1 auto;
 
@@ -6,16 +8,20 @@
 
   padding: 0;
   margin: 1em;
-  .header {
-    padding: 0.25em;
-    border: solid 1px $color-white;
-    border-width: 0 0 1px 0;
-    text-align: center;
+
+  .module-title {
+    h2 {
+      text-align: center;
+      margin: 0.5em 0; 
+    }
   }
 
-  .body {
+  .module-body {
     padding: 0.25em;
     border:none;
   }
+
+
+
 
 }

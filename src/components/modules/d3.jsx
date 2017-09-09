@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as d3 from 'd3';
+import Module from 'components/Module';
+
 
 require('styles/module/d3.scss');
 let  d3Chart = {};
@@ -244,16 +246,12 @@ d3Chart._drawPoints = function(el, scales, data) {
 
         });
 
-        return <div className ="module" id = "d3">
-          <div className ="header"> D3</div>
-
-          <div className ="body">
+        return <Module title = "d3" className ="d3" id = "d3">
             <div className = "svg-container" ref={(input) => {this.svgEl = input}}></div>
             <div className ="controls">
               {this.textInputs}
             </div>
-          </div>
-        </div>;
+          </Module> ;
       }
     }
 

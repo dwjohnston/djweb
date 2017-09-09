@@ -34,9 +34,6 @@ router.get("/movie/:id", function(req, res, next){
 
   var prom1 = fetch(apiBase + "movie/" + id + "?api_key=" + apiKey).then(result=> result.json())
   .then(json => {
-
-
-    console.log("prom1");
     var allowedKeys = ['title', 'genres', 'tagline', 'overview', 'release_date'];
     return filterByKeys(allowedKeys, json);
   }
@@ -44,8 +41,6 @@ router.get("/movie/:id", function(req, res, next){
 
 var prom2 =     fetch(apiBase + "movie/" + id + "/credits"+"?api_key=" + apiKey ).then(result=> result.json())
 .then(json => {
-
-  console.log("prom2");
 
   var allowedKeys = ['cast', 'crew'];
   return filterByKeys(allowedKeys, json);
@@ -55,10 +50,12 @@ var prom2 =     fetch(apiBase + "movie/" + id + "/credits"+"?api_key=" + apiKey 
 
 var prom3 =     fetch(apiBase + "movie/" + id + "/images?api_key=" + apiKey ).then(result => result.json())
 .then(json => {
-  console.log(json);
 
-  if (json.posters.size > 0 )
-  return  {currentImg: [imageBase, apiConfig.images.poster_sizes[1], json.posters[0].file_path].join('/')};
+
+  console.log(json);
+  console.log(apiConfig.images.poster_sizes);
+  if (json.posters.length > 0 )
+  return  {currentImg: [imageBase, apiConfig.images.poster_sizes[3], json.posters[0].file_path].join('/')};
   else return {currentImg: null};
 });
 
@@ -67,16 +64,10 @@ var promises = [prom1, prom2, prom3];
 
 Promise.all(promises).then(values => {
 
-
-console.log
-  console.log(values);
-  console.log("values");
   return Object.assign(...values);
 }).then(data => {
 
-console.log("data");
-console.log(data);
-console.log("data");
+
   res.json(data);
 
 });
@@ -111,7 +102,7 @@ router.get("/person/:id", function(req, res, next){
   .then(json => {
 
     if (json.profiles.length > 0 ){
-      return {currentImg: [imageBase, apiConfig.images.profile_sizes[1], json.profiles[0].file_path].join('/')};
+      return {currentImg: [imageBase, apiConfig.images.profile_sizes[3], json.profiles[0].file_path].join('/')};
     }
     else{
        return {currentImg: null};
@@ -124,24 +115,6 @@ router.get("/person/:id", function(req, res, next){
   Promise.all(promises).then(values => {
     return Object.assign(...values);
   }).then(data => res.json(data));
-});
-
-
-
-
-
-router.get('/', function(req, res, next) {
-  // Comment out this line:
-  //res.send('respond with a resource');
-
-  // And insert something like this instead:
-  res.json([{
-    id: 1,
-    username: "samsepi0l"
-  }, {
-    id: 2,
-    username: "D0loresH4ze"
-  }]);
 });
 
 module.exports = router;

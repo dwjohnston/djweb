@@ -1,13 +1,27 @@
-/* Base Application Styles */
-body {
-  color: #fff;
-  background: #222;
-}
+
 
 @import "theme";
+@import "typography";
 
 @import "mixin/media";
 
 @import "main";
 @import "header";
 @import "module";
+
+
+/* Base Application Styles */
+body {
+  color: #fff;
+  background: #222;
+
+
+  #app {
+
+
+    img.loader {
+      width: 3em;
+      height: 3em;
+    }
+  }
+}

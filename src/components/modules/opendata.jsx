@@ -1,4 +1,6 @@
 import React from 'react';
+import Module from 'components/Module';
+
 require('styles/module/opendata.scss');
 
 class Movie extends React.Component {
@@ -186,21 +188,19 @@ class Movie extends React.Component {
 
 
       render() {
-        return <div className ="module" id = "opendata">
-          <div className ="header"> Open Data</div>
+        return <Module title = "open data" className ="opendata" id = "opendata">
 
-          <div className ="body">
-            <div>
-
+            <div className ="details">
               {this.state.currentMovie &&   <Movie item = {this.state.currentMovie} findPersonById = {(id) => {this.getPerson(id);}}/>}
               {this.state.currentPerson &&  <Actor item = {this.state.currentPerson} findMovieById = {(id) => {this.getMovie(id);}}/>}
             </div>
+
             <div className = "img-container">
               {this.state.currentMovie && <img src ={this.state.currentMovie.currentImg}/>}
               {this.state.currentPerson && <img src ={this.state.currentPerson.currentImg}/>}
             </div>
-          </div>
-        </div>;
+
+</Module>
       }
     }
 

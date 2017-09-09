@@ -1,5 +1,6 @@
 import React from 'react';
 import {Panel, ButtonToolbar, Button, DropdownButton, ButtonGroup, MenuItem, Tabs, Tab, FormGroup, HelpBlock, FormControl, ControlLabel, Checkbox, Radio} from 'react-bootstrap';
+import Module from 'components/Module';
 
 require('styles/module/bootstrap.scss');
 
@@ -142,164 +143,160 @@ class BootstrapModule extends React.Component {
   }
 
   render() {
-    return <div className ="module" id = "bootstrap">
-      <div className ="header"> Bootstrap</div>
+    return <Module className ="module" id = "bootstrap" title = "bootstrap">
 
-      <div className ="body">
+      <Panel bsStyle ="primary" header="My Nice Form">
 
-        <Panel bsStyle ="primary" header="My Nice Form">
-
-          <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
-            <Tab eventKey={1} title="Form">
+        <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
+          <Tab eventKey={1} title="Form">
 
 
-              <form
-                onSubmit = {(e) =>this.handleSubmit(e)}
-                onReset = {(e) => this.handleReset(e)}
+            <form
+              onSubmit = {(e) =>this.handleSubmit(e)}
+              onReset = {(e) => this.handleReset(e)}
+
+              >
+
+              <FormGroup
+                validationState={this.getValidationState("name", "not-empty")}
+                >
+                <ControlLabel> Name</ControlLabel>
+                <FormControl type="text"
+                  id ="name"
+                  value = {this.state.form.name}
+                  onChange = {(e) => this.handleChange(e, "name")}
+                  onBlur = {(e) => this.validateElement("name", "not-empty")}
+                  />
+
+                <HelpBlock>Name may not be empty</HelpBlock>
+              </FormGroup>
+
+              <FormGroup
 
                 >
+                <ControlLabel> Favourite Flavour</ControlLabel>
+                <FormControl componentClass="select"
+                  id ="flavour"
+                  value = {this.state.form.flavour}
+                  onChange = {(e) => this.handleChange(e, "flavour")}
+                  >
+                  <option value="chocolate">Chocolate</option>
+                  <option value="vanilla">Vanilla</option>
+                  <option value="strawberry">Strawberry</option>
+                </FormControl>
+              </FormGroup>
+
+
+
+              {/***
+                Checkbox and radio groups really need their own container item, similar to FormControl
+                */}
+                <FormGroup>
+                  <ControlLabel> Genres of music </ControlLabel>
+
+                  <Checkbox inline
+                    onChange = {(e) => this.handleCheckboxChange(e, "music", "rock")}
+                    >
+                    Rock
+                  </Checkbox>
+                  <Checkbox inline
+                    onChange = {(e) => this.handleCheckboxChange(e, "music", "pop")}
+                    >
+                    Pop
+                  </Checkbox>
+                  <Checkbox inline
+                    onChange = {(e) => this.handleCheckboxChange(e, "music", "dance")}
+                    >
+                    Dance
+                  </Checkbox>
+                  <Checkbox inline
+                    onChange = {(e) => this.handleCheckboxChange(e, "music", "acoustic")}
+                    >
+                    Acoustic
+                  </Checkbox>
+
+                </FormGroup>
 
                 <FormGroup
-                  validationState={this.getValidationState("name", "not-empty")}
+                  validationState={this.getValidationState("gender")}
                   >
-                  <ControlLabel> Name</ControlLabel>
-                  <FormControl type="text"
-                    id ="name"
-                    value = {this.state.form.name}
-                    onChange = {(e) => this.handleChange(e, "name")}
-                    onBlur = {(e) => this.validateElement("name", "not-empty")}
+                  <ControlLabel> Gender </ControlLabel>
+
+                  <Radio inline name = "gender" value="male"     onChange = {(e) => {
+                      this.handleChange(e, "gender");
+                      this.validateElement("gender", "not-empty");
+                      console.log("a");
+                    }}>Male
+                  </Radio>
+                  <Radio inline name = "gender" value="female"   onChange = {(e) => {
+                      this.handleChange(e, "gender");
+                      this.validateElement("gender", "not-empty");
+                      console.log("a");
+
+                    }}> Female
+                  </Radio>
+                  <Radio inline name = "gender" value="non-binary"   onChange = {(e) => {
+                      this.handleChange(e, "gender");
+                      this.validateElement("gender", "not-empty");
+                      console.log("a");
+
+                    }}>Non-binary
+                  </Radio>
+                  <HelpBlock> Please enter a gender</HelpBlock>
+                </FormGroup>
+
+                <FormGroup
+                  validationState = {this.getValidationState("aboutSelf", "not-empty")}
+                  >
+                  <ControlLabel> Enter some text about yourself</ControlLabel>
+                  <FormControl
+                    componentClass="textarea"
+                    id ="aboutSelf"
+                    value = {this.state.form.aboutSelf}
+                    onChange = {(e) => this.handleChange(e, "aboutSelf")}
+                    onBlur = {(e) => this.validateElement("aboutSelf", "not-empty")}
+
                     />
 
-                  <HelpBlock>Name may not be empty</HelpBlock>
+                  <HelpBlock>Please enter something about yourself</HelpBlock>
+
                 </FormGroup>
 
-                <FormGroup
-
-                  >
-                  <ControlLabel> Favourite Flavour</ControlLabel>
-                  <FormControl componentClass="select"
-                    id ="flavour"
-                    value = {this.state.form.flavour}
-                    onChange = {(e) => this.handleChange(e, "flavour")}
-                    >
-                    <option value="chocolate">Chocolate</option>
-                    <option value="vanilla">Vanilla</option>
-                    <option value="strawberry">Strawberry</option>
-                  </FormControl>
-                </FormGroup>
+                <ButtonToolbar className ="pull-right">
+                  <Button bsStyle="default" type = "reset">Cancel</Button>
+                  <Button bsStyle="primary" type = "submit">Submit</Button>
+                </ButtonToolbar>
+              </form>
 
 
+            </Tab>
+            <Tab eventKey={2} title="About">
 
-                {/***
-                  Checkbox and radio groups really need their own container item, similar to FormControl
-                  */}
-                  <FormGroup>
-                    <ControlLabel> Genres of music </ControlLabel>
+              <h2> About</h2>
 
-                    <Checkbox inline
-                      onChange = {(e) => this.handleCheckboxChange(e, "music", "rock")}
-                      >
-                      Rock
-                    </Checkbox>
-                    <Checkbox inline
-                      onChange = {(e) => this.handleCheckboxChange(e, "music", "pop")}
-                      >
-                      Pop
-                    </Checkbox>
-                    <Checkbox inline
-                      onChange = {(e) => this.handleCheckboxChange(e, "music", "dance")}
-                      >
-                      Dance
-                    </Checkbox>
-                    <Checkbox inline
-                      onChange = {(e) => this.handleCheckboxChange(e, "music", "acoustic")}
-                      >
-                      Acoustic
-                    </Checkbox>
+              <p>
+                I hope you're having a lovely day :)
 
-                  </FormGroup>
+              </p>
 
-                  <FormGroup
-                    validationState={this.getValidationState("gender")}
-                    >
-                    <ControlLabel> Gender </ControlLabel>
+              <img className ="image-kitten" src ="images/kitten.jpg"/>
 
-                    <Radio inline name = "gender" value="male"     onChange = {(e) => {
-                        this.handleChange(e, "gender");
-                        this.validateElement("gender", "not-empty");
-                        console.log("a");
-                      }}>Male
-                    </Radio>
-                    <Radio inline name = "gender" value="female"   onChange = {(e) => {
-                        this.handleChange(e, "gender");
-                        this.validateElement("gender", "not-empty");
-                        console.log("a");
-
-                      }}> Female
-                    </Radio>
-                    <Radio inline name = "gender" value="non-binary"   onChange = {(e) => {
-                        this.handleChange(e, "gender");
-                        this.validateElement("gender", "not-empty");
-                        console.log("a");
-
-                      }}>Non-binary
-                    </Radio>
-                      <HelpBlock> Please enter a gender</HelpBlock>
-                    </FormGroup>
-
-                    <FormGroup
-                      validationState = {this.getValidationState("aboutSelf", "not-empty")}
-                      >
-                      <ControlLabel> Enter some text about yourself</ControlLabel>
-                      <FormControl
-                        componentClass="textarea"
-                        id ="aboutSelf"
-                        value = {this.state.form.aboutSelf}
-                        onChange = {(e) => this.handleChange(e, "aboutSelf")}
-                        onBlur = {(e) => this.validateElement("aboutSelf", "not-empty")}
-
-                        />
-
-                      <HelpBlock>Please enter something about yourself</HelpBlock>
-
-                    </FormGroup>
-
-                    <ButtonToolbar className ="pull-right">
-                      <Button bsStyle="default" type = "reset">Cancel</Button>
-                      <Button bsStyle="primary" type = "submit">Submit</Button>
-                    </ButtonToolbar>
-                  </form>
-
-
-                </Tab>
-                <Tab eventKey={2} title="About">
-
-                  <h2> About</h2>
-
-                  <p>
-                    I hope you're having a lovely day :)
-
-                  </p>
-
-                  <img className ="image-kitten" src ="images/kitten.jpg"/>
-
-                </Tab>
-              </Tabs>
+            </Tab>
+          </Tabs>
 
 
 
 
-            </Panel>
+        </Panel>
 
-            <code>
-              Output:<br/>
-            {JSON.stringify(this.state.output, null, 2)}
+        <code>
+          Output:<br/>
+        {JSON.stringify(this.state.output, null, 2)}
 
-            </code>
+      </code>
 
-          </div>
-        </div>;
-      }
-    }
+    </Module>;
+  }
+}
 
-    export default BootstrapModule;
+export default BootstrapModule;
