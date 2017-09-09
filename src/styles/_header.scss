@@ -9,7 +9,7 @@ div.index {
   justify-content: space-between;
 }
 
-#header {
+header {
 
   padding: 1em;
   border: solid 3px $color-white;
@@ -31,10 +31,12 @@ div.index {
   flex: 1 0 auto;
 }
 
-#footer {
+footer {
   border: solid 1px $color-grey2;
   border-width: 1px 0 0 0;
   background-color: $color-grey1;
 
-  padding: 1em;
+  margin-top: 2em;
+
+  padding: 2em;
 }

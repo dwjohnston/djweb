@@ -27,14 +27,17 @@
   }
 
 
-.body {
+.module-body {
   display: flex;
   flex-flow: column nowrap;
   align-items: stretch;
 
   .panel {
     margin: 1em;
-    flex: 1 0 auto;
+    flex: 0 0 44em;
+
+
+
   }
 
   code {

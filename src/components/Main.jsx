@@ -13,7 +13,7 @@ class AppComponent extends React.Component {
   render() {
     return (
       <div className="index">
-        <div id = "header">
+        <header>
           <h1>David Johnston</h1><span>Web developer</span>
           <p>
             This website is mobile friendly
@@ -33,7 +33,7 @@ class AppComponent extends React.Component {
 
 
 
-      </div>
+      </header>
 
       <div id = "body">
         <div className = "module-container">
@@ -46,9 +46,9 @@ class AppComponent extends React.Component {
         </div>
       </div>
 
-      <div id ="footer">
+      <footer>
         footer
-      </div>
+      </footer>
     </div>
   );
 }
