@@ -11,7 +11,7 @@ var imageBase, apiConfig;
 
 fetch(apiBase + "configuration" +  "?api_key=" + apiKey).then(result => result.json())
 .then (json => {
-  imgBase = json.images.base_url;
+  imageBase = json.images.base_url;
   apiConfig = json;
 });
 
@@ -58,7 +58,7 @@ var prom3 =     fetch(apiBase + "movie/" + id + "/images?api_key=" + apiKey ).th
   console.log(json);
 
   if (json.posters.size > 0 )
-  return  {currentImg: [imgBase, apiConfig.images.poster_sizes[1], json.posters[0].file_path].join('/')};
+  return  {currentImg: [imageBase, apiConfig.images.poster_sizes[1], json.posters[0].file_path].join('/')};
   else return {currentImg: null};
 });
 
@@ -111,7 +111,7 @@ router.get("/person/:id", function(req, res, next){
   .then(json => {
 
     if (json.profiles.length > 0 ){
-      return {currentImg: [imgBase, apiConfig.images.profile_sizes[1], json.profiles[0].file_path].join('/')};
+      return {currentImg: [imageBase, apiConfig.images.profile_sizes[1], json.profiles[0].file_path].join('/')};
     }
     else{
        return {currentImg: null};
