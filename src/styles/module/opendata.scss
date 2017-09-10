@@ -12,24 +12,24 @@
 
     .details {
       flex: 1 1 auto;
-
-      border: solid 1px white;
+      padding-right: 3em;
     }
 
     &  .img-container {
 
-      flex: 0 0 15em;
-      border: solid 1px white;
+      flex: 0 0 20em;
       box-sizing: border-box;
-      padding: 0;
+      margin-right: 1em;
+      padding-top: 4em;
 
       display:flex;
       flex-flow: column nowrap;
-      justify-content: center;
+      justify-content: flex-start;
       align-items:center;
 
       img {
-        max-width: 15em;
+        width: 100%;
+        height: auto;
       }
 
     }

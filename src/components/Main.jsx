@@ -54,6 +54,13 @@ class AppComponent extends React.Component {
 
         <footer>
 
+          <div className ="badges">
+            <a href = "https://www.youracclaim.com/badges/84a550b9-3a71-4c15-813d-a7a52259e1dc/public_url" target ="_blank">
+              <img className ="badge badge-oracle" alt ="Oracle Certified Associate, Java SE 8 Programmer"/>
+            </a>
+          </div>
+
+
           <table className= "contact-details">
 
             <tr>

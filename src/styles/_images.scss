@@ -29,3 +29,19 @@
     content: url("../images/icon-linkedin.png");
   }
 }
+
+.badges {
+  img.badge {
+    display:block;
+    width: 18em;
+    height: auto;
+    margin: 1em;
+
+    &.badge-oracle {
+      content: url("../images/badge-oracle.png");
+
+    }
+
+  }
+
+}
