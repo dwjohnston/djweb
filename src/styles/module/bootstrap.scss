@@ -1,3 +1,5 @@
+@import "../theme";
+
 .panel {
   color: black;
 }
@@ -13,16 +15,31 @@
     .help-block {
       display: none;
     }
+
+  }
+
+  a{
+    color: #337ab7;
   }
 
   .form-group {
     .control-label {
       display: block;
     }
+
+    &.has-error {
+      label, .help-block {
+        color: $color-error-red;
+      }
+    }
+
   }
 
   img.image-kitten {
-    height: 20em;
+    height: 25em;
+    display: block;
+    margin: 0 auto;
+    margin-top: 2em;
 
   }
 

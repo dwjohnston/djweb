@@ -11,20 +11,41 @@ div.index {
 
 header {
 
-  padding: 1em;
-  border: solid 3px $color-white;
+  background-color: $color-grey1;
 
+  padding: 2em 15em;
+  margin-bottom: 2em;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 
   h1 {
     margin: 0;
+  }
 
-    &+span {
 
+
+  .sub-title,  p{
+    font-family: $font-serif;
+    margin-top: 0.5em;
+    margin-left: 1em;
+    margin-bottom: 1em;
+  }
+
+  p {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  #github-link {
+    a,img {
+      display: block;
     }
   }
-    p {
-      margin: 0;
-    }
+
+
+
 }
 
 #body {
@@ -37,6 +58,9 @@ footer {
   background-color: $color-grey1;
 
   margin-top: 2em;
-
   padding: 2em;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
 }

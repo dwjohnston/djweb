@@ -1,0 +1,31 @@
+.icon {
+
+  width: 2em;
+  height: auto;
+  margin: 0.5em;
+
+  &.icon-large {
+    width: 8em;
+    height: auto;
+  }
+
+  &.icon-github {
+    content: url("../images/icon-github.png");
+  }
+
+  &.icon-phone {
+    content: url("../images/icon-phone.png");
+  }
+
+  &.icon-email {
+    content: url("../images/icon-email.png");
+  }
+
+  &.icon-stackoverflow {
+    content: url("../images/icon-stackoverflow.png");
+  }
+
+  &.icon-linkedin {
+    content: url("../images/icon-linkedin.png");
+  }
+}

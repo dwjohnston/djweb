@@ -1,0 +1,19 @@
+table.contact-details {
+
+  &, a {
+    color: $color-white;
+    font-weight: normal;
+
+  }
+  tr {
+    margin: 2em 0;
+  }
+
+  td:first-child {
+
+    padding-right:1em;
+    vertical-align: middle;
+
+  }
+
+}

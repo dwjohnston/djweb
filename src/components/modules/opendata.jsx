@@ -188,7 +188,7 @@ class Movie extends React.Component {
 
 
       render() {
-        return <Module title = "open data" className ="opendata" id = "opendata">
+        return <Module title = "open data / apis" className ="opendata" id = "opendata">
 
             <div className ="details">
               {this.state.currentMovie &&   <Movie item = {this.state.currentMovie} findPersonById = {(id) => {this.getPerson(id);}}/>}

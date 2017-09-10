@@ -14,44 +14,80 @@ class AppComponent extends React.Component {
     return (
       <div className="index">
         <header>
-          <h1>David Johnston</h1><span>Web developer</span>
-          <p>
-            This website is mobile friendly
-          </p>
-          <p>
-            This project is on github. Follow it here: <a href="https://github.com/dwjohnston/djweb">https://github.com/dwjohnston/djweb</a>
-        </p>
 
-        <p>
+          <div>
+            <h1>David Johnston</h1><span className ="sub-title">Web developer</span>
+            <p>
+              HTML/CSS/Javascript/React/Redux
+            </p>
+            <p>
+              NodeJs/Java
+            </p>
+            <p>
+              <a href ="/cv/cv.html" target ="blank">Curriculum Vitae</a>
+            </p>
 
-          <strong> FAQ</strong>
-          <ul>
-            <li> Q. This website looks ugly! </li>
-            <li> A. I'm prioritising functionality over looks. I'm putting this up as quick as I can yo. </li>
-          </ul>
-        </p>
+          </div>
+
+          <div id = "github-link">
+            <a href = "https://github.com/dwjohnston/djweb"> <img className ="icon icon-github icon-large"/></a>
 
 
 
-      </header>
+          </div>
 
-      <div id = "body">
-        <div className = "module-container">
 
-          <BootstrapModule/>
-          <D3Module/>
-          {/*<CssAnimationModule/>*/}
-          <OpenDataModule />
 
+
+        </header>
+
+        <div id = "body">
+          <div className = "module-container">
+
+            <BootstrapModule/>
+            <D3Module/>
+            {/*<CssAnimationModule/>*/}
+            <OpenDataModule />
+
+          </div>
         </div>
-      </div>
 
-      <footer>
-        footer
-      </footer>
-    </div>
-  );
-}
+        <footer>
+
+          <table className= "contact-details">
+
+            <tr>
+              <td><img className="icon icon-phone"/></td>
+              <td>+64 22 473 8301 </td>
+            </tr>
+
+            <tr>
+              <td><img className="icon icon-email"/> </td>
+              <td><a href ="mailto:david@blacksheepcode.com">david@blacksheepcode.com</a> </td>
+            </tr>
+
+            <tr>
+              <td><img className="icon icon-github"/> </td>
+              <td><a href = "https://github.com/dwjohnston" target ="_blank"> https://github.com/dwjohnston</a> </td>
+            </tr>
+            <tr>
+
+              <td><img className="icon icon-stackoverflow"/> </td>
+              <td><a href ="https://stackoverflow.com/users/1068446/dwjohnston" target ="_blank">https://stackoverflow.com/users/1068446/dwjohnston</a> </td>
+            </tr>
+            <tr>
+
+              <td><img className="icon icon-linkedin"/> </td>
+              <td><a href ="www.linkedin.com/in/davidjohnstonwebdevelope" target ="_blank">www.linkedin.com/in/davidjohnstonwebdeveloper</a></td>
+            </tr>
+          </table>
+
+
+
+        </footer>
+      </div>
+    );
+  }
 }
 
 AppComponent.defaultProps = {
