@@ -148,28 +148,27 @@ d3Chart._drawPoints = function(el, scales, data) {
 
       componentDidMount() {
 
-        console.log("did  mount");
         var el = ReactDOM.findDOMNode(this);
         d3Chart.create(this.svgEl, {
           width: '100%',
           height: '300px'
         }, this.getChartState());
 
+        d3Chart.update(this.svgEl, this.getChartState());
+
+
       }
 
       componentDidUpdate() {
 
-        console.log("component did up date");
 
         var el = ReactDOM.findDOMNode(this);
-        console.log(el);
 
         d3Chart.update(this.svgEl, this.getChartState());
       }
 
       getChartState() {
 
-        console.log(this.state);
 
         let maxY = Math.max.apply(Math, this.state.data.map(function(o){return o.value})) * 1.1;
 
@@ -185,25 +184,12 @@ d3Chart._drawPoints = function(el, scales, data) {
       }
 
       componentWillUnmount() {
-
-        console.log("will unmount");
-
         var el = ReactDOM.findDOMNode(this);
-        console.log(el);
         d3Chart.destroy(this.svgEl);
       }
 
       handleTextChange(v,i) {
-        console.log("handle text change");
 
-
-
-        console.log(v);
-        console.log(i);
-
-        console.log(v.target.value);
-
-        console.log(this);
         let newState = this.state;
 
         let value = parseFloat(v.target.value);
@@ -238,9 +224,9 @@ d3Chart._drawPoints = function(el, scales, data) {
             onChange = {(v) => {
               this.handleTextChange(v,i);
             }}/>
-            <div className =  {"error " +  (v.isValid ? "valid" : "invalid")}>
+            {/*<div className =  {"error " +  (v.isValid ? "valid" : "invalid")}>
               <span className ="glyphicon glyphicon-remove"></span>
-            </div>
+            </div>*/}
 
           </div>
 

@@ -40,10 +40,10 @@ svg {
         align-items: center;
 
         input {
-          margin: 0.5em;
-          margin-right: 1.5em;
+          margin: 0.5em 0.25em;
+
           flex: 1 0 auto;
-          height: 2.5em;
+          height: 2em;
         }
 
         .error {
