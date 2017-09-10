@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "clean": "rimraf dist/*",
-    "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./cv ./dist",
+    "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./dist && ncp ./cv/ ./dist/cv",
     "dist": "npm run copy & webpack --env=dist",
     "lint": "eslint ./src",
     "posttest": "npm run lint",
@@ -17,8 +17,6 @@
     "start": "node server.js --env=dev",
     "test": "karma start",
     "test:watch": "karma start --autoWatch=true --singleRun=false",
-
-
     "//": "kill is for a git bash issue where ctrl+c doesn't correctly shut down the node process, see ",
     "kill": "taskkill //pid `netstat -aon | grep 8000 | grep -P '(?<=LISTENING).*' -o | grep -P '\\d*' -o` //f"
   },
@@ -54,6 +52,7 @@
     "karma-webpack": "^1.7.0",
     "minimist": "^1.2.0",
     "mocha": "^3.0.0",
+    "ncp": "^2.0.0",
     "node-sass": "^4.5.2",
     "null-loader": "^0.1.1",
     "open": "0.0.5",
