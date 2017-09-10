@@ -1,5 +1,13 @@
 body {
   font-family: $font-sans;
+
+
+  //nb! Some really weird bug means that for some reason the plain styling on the a link below isn't working.
+  //I have no idea why
+
+  a {
+    color: $color-link-yellow;
+  }
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -13,7 +21,8 @@ h1,h2,h3,h4,h5,h6 {
 a {
   font-weight: bold;
   color: $color-link-yellow;
-  &,&:visted {
+
+  &:visted {
     color: $color-link-yellow;
   }
 

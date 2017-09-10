@@ -4,7 +4,6 @@ import * as d3 from 'd3';
 import Module from 'components/Module';
 
 
-require('styles/module/d3.scss');
 let  d3Chart = {};
 
 d3Chart.create = function(el, props, state) {
@@ -186,7 +185,7 @@ d3Chart._drawPoints = function(el, scales, data) {
           newState.data[i].value = value;
           newState.data[i].isValid = true;
         }
-        
+
         this.setState(newState)
 
         d3Chart.update(this.svgEl, this.getChartState());

@@ -2,7 +2,6 @@ import React from 'react';
 import {Panel, ButtonToolbar, Button, DropdownButton, ButtonGroup, MenuItem, Tabs, Tab, FormGroup, HelpBlock, FormControl, ControlLabel, Checkbox, Radio} from 'react-bootstrap';
 import Module from 'components/Module';
 
-require('styles/module/bootstrap.scss');
 
 class BootstrapModule extends React.Component {
 
@@ -274,7 +273,7 @@ class BootstrapModule extends React.Component {
 
               </p>
 
-              <img className ="image-kitten" src ="images/kitten.jpg"/>
+              <img className ="image-kitten"/>
 
             </Tab>
           </Tabs>

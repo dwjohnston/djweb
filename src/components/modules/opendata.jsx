@@ -1,7 +1,6 @@
 import React from 'react';
 import Module from 'components/Module';
 
-require('styles/module/opendata.scss');
 
 class Movie extends React.Component {
   constructor(){

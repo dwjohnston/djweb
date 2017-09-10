@@ -1,5 +1,4 @@
 import React from 'react';
-require('styles/module/css-animation.scss');
 
 class CssAnimationModule extends React.Component {
 
@@ -21,7 +20,7 @@ class CssAnimationModule extends React.Component {
               <button> Click me</button>
 
 
-              <div className = "bottom"/> 
+              <div className = "bottom"/>
 
           </div>
         </div>
