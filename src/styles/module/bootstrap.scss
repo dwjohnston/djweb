@@ -1,5 +1,5 @@
 @import "../theme";
-
+@import "../mixin/media";
 .panel {
   color: black;
 }
@@ -23,6 +23,18 @@
   }
 
   .form-group {
+
+    .checkbox-inline, .radio-inline {
+      display: block;
+      margin: 0;
+      margin-right: 1.5em;
+
+      @include tablet-up {
+        display: inline-block;
+      }
+
+    }
+
     .control-label {
       display: block;
     }
@@ -36,36 +48,45 @@
   }
 
   img.image-kitten {
-    height: 25em;
-    display: block;
-    margin: 0 auto;
-    margin-top: 2em;
 
+    width: 100%;
+
+
+    @include tablet-up {
+      height: 25em;
+      display: block;
+      margin: 0 auto;
+      margin-top: 2em;
+    }
   }
 
 
-.module-body {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: stretch;
+  .module-body {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
 
-  .panel {
-    margin: 1em;
-    flex: 0 0 44em;
+    .panel {
+      margin: 1em;
+
+      flex: 0 0 52em;
+
+      @include tablet-up {
+            flex: 0 0 44em;
+      }
 
 
+    }
+
+    code {
+      flex: 0 0 6em;
+      margin: 1em;
+      padding: 0.5em;
+      white-space: pre-wrap;
+
+
+    }
 
   }
-
-  code {
-    flex: 0 0 6em;
-    margin: 1em;
-    padding: 0.5em;
-    white-space: pre-wrap;
-
-
-  }
-
-}
 
 }

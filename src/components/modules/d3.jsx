@@ -17,13 +17,11 @@ d3Chart.create = function(el, props, state) {
   svg.append('g')
   .attr('class', 'd3-points');
 
-  console.log(state);
   this.update(el, state);
 };
 
 d3Chart.update = function(el, state) {
 
-  console.log("d3 update");
   // Re-compute the scales, and render the data points
   var scales = this._scales(el, state.domain);
   this._drawPoints(el, scales, state.data);
@@ -65,10 +63,8 @@ d3Chart._scales = function(el, domain) {
 d3Chart._drawPoints = function(el, scales, data) {
   var g = d3.select(el).selectAll('.d3-points');
   let barWidth = scales.x(1);
-  console.log(data);
   var point = g.selectAll('.d3-point')
   .data(data)           .attr('x', function(d, i) {
-    console.log(d);
     return (i * 2 + 1) * barWidth;
   })
   .attr('y', 0)
@@ -77,9 +73,7 @@ d3Chart._drawPoints = function(el, scales, data) {
     return d.value;
   })
   .attr('height', function(d) {
-    console.log("height");
-    console.log(d);
-    console.log(scales.y(d.value));
+
     return  scales.y(d.value);});
 
 
@@ -87,11 +81,9 @@ d3Chart._drawPoints = function(el, scales, data) {
 
     point.enter().append('rect')
     .attr('class', function(d) {
-      console.log("append rect");
       return 'd3-point';
     })
     .attr('x', function(d, i) {
-      console.log(d);
       return i * barWidth * 2;
     })
     .attr('y', 0)
@@ -100,17 +92,9 @@ d3Chart._drawPoints = function(el, scales, data) {
       return d.value;
     })
     .attr('height', function(d) {
-      console.log("height");
-      console.log(d);
-      console.log(scales.y(d.value));
+
       return  scales.y(d.value);});
 
-
-
-
-      console.log(this);
-      console.log(scales);
-      console.log(point);
 
       // EXIT
       point.exit()
@@ -202,8 +186,7 @@ d3Chart._drawPoints = function(el, scales, data) {
           newState.data[i].value = value;
           newState.data[i].isValid = true;
         }
-        console.log(value);
-
+        
         this.setState(newState)
 
         d3Chart.update(this.svgEl, this.getChartState());
@@ -212,11 +195,9 @@ d3Chart._drawPoints = function(el, scales, data) {
       }
 
       render() {
-        console.log("render");
-        console.log(this);
+
 
         this.textInputs = this.state.data.map((v,i) => {
-          console.log(v);
           return <div className = "input-pair"><input
             type = "text"
             key = {"textInput" + i}
@@ -225,7 +206,7 @@ d3Chart._drawPoints = function(el, scales, data) {
               this.handleTextChange(v,i);
             }}/>
             {/*<div className =  {"error " +  (v.isValid ? "valid" : "invalid")}>
-              <span className ="glyphicon glyphicon-remove"></span>
+            <span className ="glyphicon glyphicon-remove"></span>
             </div>*/}
 
           </div>
@@ -233,11 +214,11 @@ d3Chart._drawPoints = function(el, scales, data) {
         });
 
         return <Module title = "d3" className ="d3" id = "d3">
-            <div className = "svg-container" ref={(input) => {this.svgEl = input}}></div>
-            <div className ="controls">
-              {this.textInputs}
-            </div>
-          </Module> ;
+          <div className = "svg-container" ref={(input) => {this.svgEl = input}}></div>
+          <div className ="controls">
+            {this.textInputs}
+          </div>
+        </Module> ;
       }
     }
 

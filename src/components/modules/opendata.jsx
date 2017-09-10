@@ -10,7 +10,6 @@ class Movie extends React.Component {
 
   render() {
 
-    console.log(this.props.item);
 
     return (<div className = "movie">
 
@@ -60,7 +59,7 @@ class Movie extends React.Component {
             <td> Crew (top five)</td>
             <td> <ul>  {this.props.item.crew.slice(0, 5).map((v,i) => {
                 return <li key = {"crew-" + i}> <a onClick = {() => {
-                    this.props.findPersonById(v.id)}}>{v.name}</a>  {" - " +  v.job}</li>;
+                    this.props.findPersonById(v.id)}}>{v.name}</a>  {" " +  v.job}</li>;
                   })}
                 </ul>
               </td>
@@ -81,7 +80,6 @@ class Movie extends React.Component {
 
     render() {
 
-      console.log(this.props.item);
 
       return (<div className = "person">
 

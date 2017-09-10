@@ -1,9 +1,15 @@
 @import "../theme";
+@import "../mixin/media";
 
 #opendata {
   .module-body {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
+
+    @include tablet-up{
+      flex-flow: row nowrap
+    }
+
 
     div {
       flex: 0 1 auto;
@@ -15,12 +21,16 @@
       padding-right: 3em;
     }
 
-    &  .img-container {
+    .img-container {
+      order: -1;
+      @include tablet-up {
+        order: 2;
+        flex: 0 0 20em;
+        margin-right: 1em;
+        padding-top: 4em;
+      }
 
-      flex: 0 0 20em;
-      box-sizing: border-box;
-      margin-right: 1em;
-      padding-top: 4em;
+
 
       display:flex;
       flex-flow: column nowrap;
@@ -48,16 +58,30 @@
 
     border-spacing: 2em;
 
-    tr {
-      td:first-child{
-        width: 8em;
-      }
+    td {
+      display: block;
 
-      td {
-        vertical-align: top;
-        padding: 0.5em;
+      &:first-child {
+        margin-top: 0.5em;
+        font-weight: bold;
       }
     }
+
+
+    @include tablet-up {
+      tr {
+        td:first-child{
+          width: 8em;
+        }
+
+        td {
+          vertical-align: top;
+          padding: 0.5em;
+        }
+      }
+
+    }
+
 
 
   }
@@ -70,6 +94,8 @@
   }
 
   a {
+    display: block;
+
     &:hover {
       cursor: pointer;
     }

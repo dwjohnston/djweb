@@ -16,22 +16,27 @@ class AppComponent extends React.Component {
         <header>
 
           <div>
-            <h1>David Johnston</h1><span className ="sub-title">Web developer</span>
-            <p>
-              HTML/CSS/Javascript/React/Redux
-            </p>
-            <p>
-              NodeJs/Java
-            </p>
-            <p>
-              <a href ="/cv/cv.html" target ="blank">Curriculum Vitae</a>
-            </p>
-
+            <div>
+              <h1>David Johnston</h1><span className ="sub-title">Web developer</span>
+            </div>
+            <div id = "github-link">
+              <a href = "https://github.com/dwjohnston/djweb"> <img className ="icon icon-github icon-large"/></a>
+            </div>
           </div>
 
-          <div id = "github-link">
-            <a href = "https://github.com/dwjohnston/djweb"> <img className ="icon icon-github icon-large"/></a>
+          <div>
 
+            <div>
+              <p>
+                HTML/CSS/Javascript/React/Redux
+              </p>
+              <p>
+                NodeJs/Java
+              </p>
+              <p>
+                <a href ="/cv/cv.html" target ="blank">Curriculum Vitae</a>
+              </p>
+            </div>
 
 
           </div>
@@ -63,29 +68,29 @@ class AppComponent extends React.Component {
 
           <table className= "contact-details">
 
-            <tr>
-              <td><img className="icon icon-phone"/></td>
-              <td>+64 22 473 8301 </td>
+            <tr className = "telephone">
+              <td><a href ="tel:+64224738301"><img className="icon icon-phone"/></a></td>
+              <td><a href ="tel:+64224738301">+64 22 473 8301</a></td>
             </tr>
 
-            <tr>
-              <td><img className="icon icon-email"/> </td>
+            <tr className ="shrink-when-small">
+              <td><a href ="mailto:david@blacksheepcode.com" target ="_blank"><img className="icon icon-email"/></a> </td>
               <td><a href ="mailto:david@blacksheepcode.com">david@blacksheepcode.com</a> </td>
             </tr>
 
-            <tr>
-              <td><img className="icon icon-github"/> </td>
+            <tr className ="shrink-when-small">
+              <td><a href = "https://github.com/dwjohnston" target ="_blank"><img className="icon icon-github"/></a> </td>
               <td><a href = "https://github.com/dwjohnston" target ="_blank"> https://github.com/dwjohnston</a> </td>
             </tr>
-            <tr>
+            <tr className ="shrink-when-small">
 
-              <td><img className="icon icon-stackoverflow"/> </td>
+              <td><a href ="https://stackoverflow.com/users/1068446/dwjohnston" target ="_blank"><img className="icon icon-stackoverflow"/></a> </td>
               <td><a href ="https://stackoverflow.com/users/1068446/dwjohnston" target ="_blank">https://stackoverflow.com/users/1068446/dwjohnston</a> </td>
             </tr>
-            <tr>
+            <tr className ="shrink-when-small">
 
-              <td><img className="icon icon-linkedin"/> </td>
-              <td><a href ="www.linkedin.com/in/davidjohnstonwebdevelope" target ="_blank">www.linkedin.com/in/davidjohnstonwebdeveloper</a></td>
+              <td><a href ="www.linkedin.com/in/davidjohnstonwebdeveloper" target ="_blank"><img className="icon icon-linkedin"/> </a></td>
+              <td><a href ="www.linkedin.com/in/davidjohnstonwebdeveloper" target ="_blank">www.linkedin.com/in/davidjohnstonwebdeveloper</a></td>
             </tr>
           </table>
 

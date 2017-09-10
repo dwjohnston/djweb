@@ -1,5 +1,4 @@
 body {
-
   background-color: $color-background-black;
 }
 
@@ -12,19 +11,28 @@ div.index {
 header {
 
   background-color: $color-grey1;
+  padding: 1em;
 
-  padding: 2em 15em;
-  margin-bottom: 2em;
+  &>div {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
 
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
+    &:not(:last-child) {
+      margin-bottom: 1em;
+    }
+  }
+
+
+
+  @include tablet-up {
+    padding: 2em 15em;
+    margin-bottom: 2em;
+  }
 
   h1 {
     margin: 0;
   }
-
-
 
   .sub-title,  p{
     font-family: $font-serif;
@@ -34,11 +42,20 @@ header {
   }
 
   p {
-    margin-bottom: 0;
+    margin-bottom: 0.5em;
     margin-top: 0;
   }
 
   #github-link {
+
+    img {
+      width: 4em;
+
+      @tablet-up {
+        width: 8em;
+      }
+    }
+
     a,img {
       display: block;
     }
@@ -61,7 +78,22 @@ footer {
   padding: 2em;
 
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: stretch;
+
+  flex-flow: column nowrap;
+  align-items: center;
+
+  table {
+    order: -1;
+
+    @include tablet-up {
+      order: 1;
+    }
+  }
+
+  @include tablet-up{
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+
 }

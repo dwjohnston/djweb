@@ -1,4 +1,5 @@
 @import "../theme";
+@import "../mixin/media";
 
 svg {
   background-color: #ddd;
@@ -18,8 +19,12 @@ svg {
   }
   .module-body {
     display:flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     align-items:stretch;
+
+    @include tablet-up {
+      flex-flow: row nowrap;
+    }
 
     .svg-container {
       flex: 1 0 auto;

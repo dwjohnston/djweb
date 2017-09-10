@@ -81,7 +81,6 @@ class BootstrapModule extends React.Component {
 
   handleRadioChange(e, id) {
 
-    console.log(e.target.value);
     let newState = Object.assign({}, this.state);
 
 
@@ -121,7 +120,6 @@ class BootstrapModule extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log("handle submit");
     e.preventDefault();
 
     this.validateForm();
@@ -225,20 +223,17 @@ class BootstrapModule extends React.Component {
                   <Radio inline name = "gender" value="male"     onChange = {(e) => {
                       this.handleChange(e, "gender");
                       this.validateElement("gender", "not-empty");
-                      console.log("a");
                     }}>Male
                   </Radio>
                   <Radio inline name = "gender" value="female"   onChange = {(e) => {
                       this.handleChange(e, "gender");
                       this.validateElement("gender", "not-empty");
-                      console.log("a");
 
                     }}> Female
                   </Radio>
                   <Radio inline name = "gender" value="non-binary"   onChange = {(e) => {
                       this.handleChange(e, "gender");
                       this.validateElement("gender", "not-empty");
-                      console.log("a");
 
                     }}>Non-binary
                   </Radio>

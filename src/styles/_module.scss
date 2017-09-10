@@ -18,21 +18,22 @@
 section.module {
 
   display: block;
-
-  flex: 0 1 auto;
-  width: 60em;
-
   background-color: $color-background-grey;
+  flex: 0 1 auto;
 
-
-  padding: 0.25em 1.5em 1.5em;
-  margin: 1em;
   border-radius: 1em;
+  margin: 1em;
+
+  @include tablet-up {
+    width: 60em;
+    padding: 0.25em 1.5em 1.5em;
+    margin: 1em;
+  }
 
   .module-title {
     h2 {
       text-align: center;
-      margin: 0.5em 0;
+      margin: 0.5em 0 0.2em;
     }
   }
 
