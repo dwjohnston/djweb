@@ -8,9 +8,7 @@ let Module = (props) => (
   <section className={'module ' + props.className} id = {props.id}>
 
     <div className = "module-title"> <h2>{props.title}</h2></div>
-    <div className = "module-body">
       {props.children}
-    </div>
   </section>
 );
 

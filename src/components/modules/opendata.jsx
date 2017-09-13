@@ -186,19 +186,28 @@ class Movie extends React.Component {
 
       render() {
         return <Module title = "open data / apis" className ="opendata" id = "opendata">
+          <div className ="module-summary">
+            <p>
+              Demonstrates interaction with <a href = "https://developers.themoviedb.org/3" target ="_blank"> the MovieDb open data API. </a>
+          </p>
+          <p> Click the names of actors/crew members and movies continuing exploring.</p>
+        </div>
 
-            <div className ="details">
-              {this.state.currentMovie &&   <Movie item = {this.state.currentMovie} findPersonById = {(id) => {this.getPerson(id);}}/>}
-              {this.state.currentPerson &&  <Actor item = {this.state.currentPerson} findMovieById = {(id) => {this.getMovie(id);}}/>}
-            </div>
+        <div className = "module-body">
 
-            <div className = "img-container">
-              {this.state.currentMovie && <img src ={this.state.currentMovie.currentImg}/>}
-              {this.state.currentPerson && <img src ={this.state.currentPerson.currentImg}/>}
-            </div>
+        <div className ="details">
+          {this.state.currentMovie &&   <Movie item = {this.state.currentMovie} findPersonById = {(id) => {this.getPerson(id);}}/>}
+          {this.state.currentPerson &&  <Actor item = {this.state.currentPerson} findMovieById = {(id) => {this.getMovie(id);}}/>}
+        </div>
 
-</Module>
-      }
+        <div className = "img-container">
+          {this.state.currentMovie && <img src ={this.state.currentMovie.currentImg}/>}
+          {this.state.currentPerson && <img src ={this.state.currentPerson.currentImg}/>}
+        </div>
+
+</div> 
+      </Module>
     }
+  }
 
-    export default OpenDataModule;
+  export default OpenDataModule;

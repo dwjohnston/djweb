@@ -228,21 +228,31 @@ d3Chart._drawPoints = function(el, scales, data) {
 
 
         return <Module title = "d3" className ="d3" id = "d3"  >
+          <div className ="module-summary">
+
+            <p>Demonstrates a dynamic data visualistion using the <a href ="https://d3js.org/" target ="_blank">D3 library.</a></p>
+            <p>Enter your own values in the text boxes to see auto-rescaling.</p>
+
+
+          </div>
 
 
 
+          <div className = "module-body">
 
-          <div className = "svg-container" ref={(input) => {this.svgEl = input}} >
-            <ReactResizeDetector handleWidth handleHeight onResize={() =>{
-                this.onResize()}
-              } />
-            </div>
+            <div className = "svg-container" ref={(input) => {this.svgEl = input}} >
+              <ReactResizeDetector handleWidth handleHeight onResize={() =>{
+                  this.onResize()}
+                } />
+              </div>
 
 
 
-            <div className ="controls">
-              {this.textInputs}
-            </div>
+              <div className ="controls">
+                {this.textInputs}
+              </div>
+
+            </div> 
           </Module> ;
         }
       }
