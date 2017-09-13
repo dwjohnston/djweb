@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as d3 from 'd3';
 import Module from 'components/Module';
+import ReactResizeDetector from 'react-resize-detector';
+
 
 
 let  d3Chart = {};
@@ -138,15 +140,12 @@ d3Chart._drawPoints = function(el, scales, data) {
         }, this.getChartState());
 
         d3Chart.update(this.svgEl, this.getChartState());
-
-
       }
 
       componentDidUpdate() {
 
 
         var el = ReactDOM.findDOMNode(this);
-
         d3Chart.update(this.svgEl, this.getChartState());
       }
 
@@ -193,6 +192,14 @@ d3Chart._drawPoints = function(el, scales, data) {
 
       }
 
+      onResize () {
+
+
+        if (this.svgEl){
+          d3Chart.update(this.svgEl, this.getChartState());
+        }
+      }
+
       render() {
 
 
@@ -212,13 +219,25 @@ d3Chart._drawPoints = function(el, scales, data) {
 
         });
 
-        return <Module title = "d3" className ="d3" id = "d3">
-          <div className = "svg-container" ref={(input) => {this.svgEl = input}}></div>
-          <div className ="controls">
-            {this.textInputs}
-          </div>
-        </Module> ;
-      }
-    }
 
-    export default D3Module;
+        return <Module title = "d3" className ="d3" id = "d3"  >
+
+
+
+
+          <div className = "svg-container" ref={(input) => {this.svgEl = input}} >
+            <ReactResizeDetector handleWidth handleHeight onResize={() =>{
+                this.onResize()}
+              } />
+            </div>
+
+
+
+            <div className ="controls">
+              {this.textInputs}
+            </div>
+          </Module> ;
+        }
+      }
+
+      export default D3Module;

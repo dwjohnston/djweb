@@ -26,7 +26,7 @@ svg {
     }
 
     .svg-container {
-      flex: 1 0 auto;
+      flex: 1 1 auto;
       margin: 0.5em;
     }
 
@@ -34,6 +34,7 @@ svg {
       padding: 1em;
       display: flex;
       flex-flow: column nowrap;
+      flex: 0 0 auto;
 
 
 

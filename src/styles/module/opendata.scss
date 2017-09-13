@@ -21,6 +21,8 @@
 
     .img-container {
       order: -1;
+
+
       @include tablet-up {
         order: 2;
         flex: 0 0 20em;
