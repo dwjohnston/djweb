@@ -13,7 +13,6 @@ d3Chart.create = function(el, props, state) {
   .attr('class', 'd3')
   .attr('width', props.width)
   .attr('height', props.height)
-  .attr('transform', "scale(1, -1)"); //Make y=0 the bottom of the svg
 
   svg.append('g')
   .attr('class', 'd3-points');
@@ -48,7 +47,7 @@ d3Chart._scales = function(el, domain) {
   .domain(domain.x);
 
   var y = d3.scaleLinear()
-  .range([0, this.height ])
+  .range([0, this.height])
   .domain(domain.y);
 
   var z = d3.scaleLinear()
@@ -62,20 +61,26 @@ d3Chart._scales = function(el, domain) {
 
 
 d3Chart._drawPoints = function(el, scales, data) {
+
   var g = d3.select(el).selectAll('.d3-points');
   let barWidth = scales.x(1);
+  let height = scales.y.range()[1];
+
+
   var point = g.selectAll('.d3-point')
   .data(data)           .attr('x', function(d, i) {
     return (i * 2 + 1) * barWidth;
   })
-  .attr('y', 0)
+  .attr('y', function(d) {
+    return height - scales.y(d.value);
+  })
   .attr('width', barWidth)
   .attr("value", function(d) {
     return d.value;
   })
   .attr('height', function(d) {
 
-    return  scales.y(d.value);});
+    return scales.y(d.value);});
 
 
 
@@ -87,14 +92,16 @@ d3Chart._drawPoints = function(el, scales, data) {
     .attr('x', function(d, i) {
       return i * barWidth * 2;
     })
-    .attr('y', 0)
+    .attr('y', function(d) {
+      return height - scales.y(d.value);
+    })
     .attr('width', barWidth)
     .attr("value", function(d) {
       return d.value;
     })
     .attr('height', function(d) {
 
-      return  scales.y(d.value);});
+      return scales.y(d.value);});
 
 
       // EXIT

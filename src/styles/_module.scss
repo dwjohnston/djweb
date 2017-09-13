@@ -3,12 +3,12 @@
 
   display:flex;
   flex-flow: column nowrap;
-  align-items:center;
+  align-items:stretch;
   margin: 0;
 
 
   @include tablet-up{
-
+    align-items: center;
   }
 
 
