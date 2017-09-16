@@ -21,8 +21,8 @@ body {
   flex-flow: column nowrap; }
 
 .icon {
-  width: 1.4em;
-  height: 1.4em; }
+  width: 1.6em;
+  height: auto; }
   .icon.icon-github {
     content: url(./09f56e91ecf853d30ce6ce1abb58bfd6.png); }
   .icon.icon-phone {
@@ -31,10 +31,12 @@ body {
     content: url(./ebcef38c9579e93e965394229f23a6a5.png); }
   .icon.icon-stackoverflow {
     content: url(./1f57fd83035dd10181a53d4c91f93e0e.png); }
+  .icon.icon-linkedin {
+    content: url(./f7cb6c935a7067aa75a5e984d024dd1a.png); }
 
 body {
   font-family: "Verdana";
-  font-size: 0.8em; }
+  font-size: 3.2mm; }
 
 p {
   margin: 0.4em 0; }
@@ -45,9 +47,52 @@ h1, h2, h3, h4, h5, h6 {
 h6 {
   font-size: 1em; }
 
+span.link {
+  text-decoration: underline;
+  font-weight: bold; }
+
 ul {
   margin: 0;
   padding-left: 1.5em; }
+
+table {
+  margin-right: 1.5em; }
+  table td {
+    padding: 0.25em 0; }
+    table td:first-child {
+      padding-right: 1em;
+      vertical-align: middle; }
+    table td span {
+      font-size: 3.2mm; }
+
+div.body {
+  flex: 1 0 auto; }
+
+div.body {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  margin: 0.25em 0; }
+
+.column {
+  flex: 1 0 40%;
+  display: flex;
+  flex-flow: column nowrap; }
+  .column.column-left {
+    flex: 0 0 40%; }
+    .column.column-left section {
+      margin-left: 0; }
+  .column.column-right section {
+    margin-right: 0; }
+  .column section {
+    flex: 0 0 auto; }
+  .column section:last-child {
+    flex: 1 0 auto; }
+
+section {
+  border: solid 1px black;
+  padding: 0.5em;
+  margin: 0.25em; }
 
 .page-inner {
   margin: 1em;
@@ -75,34 +120,6 @@ footer {
     flex: 0 0 20em; }
   footer .github p {
     margin-top: 1em; }
-
-div.body {
-  flex: 1 0 auto; }
-
-div.body {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: stretch; }
-
-.column {
-  flex: 1 0 40%;
-  display: flex;
-  flex-flow: column nowrap; }
-  .column.column-left {
-    flex: 0 0 40%; }
-    .column.column-left section {
-      margin-left: 0; }
-  .column.column-right section {
-    margin-right: 0; }
-  .column section {
-    flex: 0 0 auto; }
-  .column section:last-child {
-    flex: 1 0 auto; }
-
-section {
-  border: solid 1px black;
-  padding: 0.5em;
-  margin: 0.5em; }
 
 #skill-set > div {
   padding-left: 0.4em;
@@ -137,9 +154,5 @@ section {
 
 #experience .experience-time-period {
   font-size: 0.9em; }
-
-table.contact-details td:first-child {
-  padding-right: 1em;
-  vertical-align: middle; }
 
 /*# sourceMappingURL=style.css.map*/
